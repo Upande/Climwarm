@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}EWS{% endblock title %}
+
+{% block extra_head %}
+<link href="{{ STATIC_URL }}css/justified-nav.css" rel="stylesheet">
+{% endblock extra_head %}
+
+{% block main_content %}
+<div class="container">
+	<div class="col-xs-9">
+		<div class="jumbotron">
+			<h4>
+				<strong>Welcome to UNEP's CLIM-WARN Early warning Platform Prototype</strong>
+			</h4>
+			<p>Please select a hazard</p>
+			<p>
+				<a class="btn btn-lg btn-success" href="#" role="button">Drought</a>
+				<a class="btn btn-lg btn-success" href="#" role="button">Food</a>
+			</p>
+
+		</div>
+	</div>
+	<div class="col-xs-3">
+		<div>
+			<img src="{{ STATIC_URL }}img/unep_logo.gif">
+		</div>
+		<p>Read more about the data and analysis methods used, as well as the platform architecture by visiting this <a href="#">link</a></p>
+	</div>
+</div>
+{% endblock main_content %}
