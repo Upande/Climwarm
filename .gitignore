@@ -1,4 +1,4 @@
-.pyc
+*.pyc
 *.zip
 *.gz
 db.sqlite3

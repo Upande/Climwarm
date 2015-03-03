@@ -10,11 +10,11 @@
 				</div>
 				<div class="panel-body">
 					{% if form.non_field_errors %}
-                    <div class="alert alert-info" role="alert">
-                        Please enter a correct username and password. Both username and password are case-sensitive.
-                    </div>
-                    {% else %}
-                    <div style="padding: 15px; margin-bottom: 20px; border: 1px tranparent;">&nbsp;</div>
+					<div class="alert alert-info" role="alert">
+						Please enter a correct username and password. Both username and password are case-sensitive.
+					</div>
+					{% else %}
+					<div style="padding: 15px; margin-bottom: 20px; border: 1px tranparent;">&nbsp;</div>
 					{% endif %}
 					<form class="form-horizontal" method="POST" role="form">{% csrf_token %}
 						{% for field in form %}
