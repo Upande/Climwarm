@@ -1,0 +1,4 @@
+.pyc
+*.zip
+*.gz
+db.sqlite3
