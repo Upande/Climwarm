@@ -13,8 +13,8 @@
         renderer:'canvas',
         view: new ol.View({
             projection: 'EPSG:900913',
-            center:[4208385, 20678],
-            zoom:5
+            center:[3780383, 6489],
+            zoom:13
         })
     });
     var newLayer = new ol.layer.Tile({
@@ -35,7 +35,7 @@
     var wmsLayer2 = new ol.layer.Image({
         source: new ol.source.ImageWMS({
             url: 'http://maps.virtualkenya.org/geoserver/wms',
-            params: {'LAYERS': 'geonode:_3mdepth_1'},
+            params: {'LAYERS': 'geonode:depth3shape'},
             serverType: 'geoserver' })
     });
     second_map.bindTo('view', first_map);
