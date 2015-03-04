@@ -16,8 +16,66 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     {% block extra_head %}{% endblock %}
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/css/ol.css" type="text/css">
+    <script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
+    <script type='text/javascript'>
+var first_map, second_map, third_map 
+
+function init(){
+first_map = new ol.Map({
+        target:'map',
+        renderer:'canvas',
+        view: new ol.View({
+            projection: 'EPSG:900913',
+            center:[4208385, 20678],
+            zoom:5
+        })
+    });
+var newLayer = new ol.layer.Tile({
+    source: new ol.source.OSM()});
+
+var wmsLayer = new ol.layer.Image({
+            source: new ol.source.ImageWMS({
+                url: 'http://maps.virtualkenya.org/geoserver/wms',
+                params: {'LAYERS': 'geonode:countypopft'},
+                serverType: 'geoserver' })
+        });
+
+second_map = new ol.Map({
+        target:'map_2'
+        });
+var wmsLayer2 = new ol.layer.Image({
+            source: new ol.source.ImageWMS({
+                url: 'http://maps.virtualkenya.org/geoserver/wms',
+                params: {'LAYERS': 'geonode:dmo12jan2012'},
+                serverType: 'geoserver' })
+        });
+second_map.bindTo('view', first_map);
+
+third_map = new ol.Map({
+        target:'map_3'
+        });
+var wmsLayer3 = new ol.layer.Image({
+            source: new ol.source.ImageWMS({
+                url: 'http://maps.virtualkenya.org/geoserver/wms',
+                params: {'LAYERS': 'geonode:kenya_locations'},
+                serverType: 'geoserver' })
+        });
+third_map.bindTo('view', first_map);
+
+var myZoom = new ol.control.ZoomSlider();
+first_map.addControl(myZoom);
+
+first_map.addLayer(newLayer);
+first_map.addLayer(wmsLayer);
+second_map.addLayer(newLayer);
+second_map.addLayer(wmsLayer2);
+third_map.addLayer(newLayer);
+third_map.addLayer(wmsLayer3);
+}
+</script>
 </head>
-<body>
+<body onload = 'init()'>
     <header class="navbar navbar-default navbar-static-top" role="banner">
         <div class="container">
             <div class="navbar-header">
