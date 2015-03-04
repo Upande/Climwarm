@@ -24,7 +24,7 @@
     var wmsLayer = new ol.layer.Image({
         source: new ol.source.ImageWMS({
             url: 'http://maps.virtualkenya.org/geoserver/wms',
-            params: {'LAYERS': 'geonode:countypopft'},
+            params: {'LAYERS': 'geonode:flood_homes'},
             serverType: 'geoserver' })
     });
 
@@ -35,7 +35,7 @@
     var wmsLayer2 = new ol.layer.Image({
         source: new ol.source.ImageWMS({
             url: 'http://maps.virtualkenya.org/geoserver/wms',
-            params: {'LAYERS': 'geonode:dmo12jan2012'},
+            params: {'LAYERS': 'geonode:_3mdepth_1'},
             serverType: 'geoserver' })
     });
     second_map.bindTo('view', first_map);
