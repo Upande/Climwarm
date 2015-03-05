@@ -10,10 +10,9 @@
     function init(){
     first_map = new ol.Map({
         target:'map',
-        renderer:'canvas',
         view: new ol.View({
             projection: 'EPSG:900913',
-            center:[3780383, 6489],
+            center:[3783258, 7880],
             zoom:13
         })
     });
@@ -46,13 +45,10 @@
     var wmsLayer3 = new ol.layer.Image({
         source: new ol.source.ImageWMS({
             url: 'http://maps.virtualkenya.org/geoserver/wms',
-            params: {'LAYERS': 'geonode:kenya_locations'},
+            params: {'LAYERS': 'geonode:_3mdepth'},
             serverType: 'geoserver' })
     });
     third_map.bindTo('view', first_map);
-
-    var myZoom = new ol.control.ZoomSlider();
-    first_map.addControl(myZoom);
 
     first_map.addLayer(newLayer);
     first_map.addLayer(wmsLayer);
@@ -60,6 +56,24 @@
     second_map.addLayer(wmsLayer2);
     third_map.addLayer(newLayer);
     third_map.addLayer(wmsLayer3);
+
+    first_map_dup = new ol.Map({
+        target:'map_dup'
+    });
+    first_map_dup.bindTo('layergroup', first_map);
+    first_map_dup.bindTo('view', first_map);
+
+    second_map_dup = new ol.Map({
+        target:'map_2_dup'
+    });
+    second_map_dup.bindTo('layergroup', second_map);
+    second_map_dup.bindTo('view', first_map);
+
+    third_map_dup = new ol.Map({
+        target:'map_3_dup'
+    });
+    third_map_dup.bindTo('layergroup', third_map);
+    third_map_dup.bindTo('view', first_map);
 }
 </script>
 <style>
@@ -72,6 +86,7 @@
     .placeholder {
         width:100%;
         height: 100%;
+        
     }
 
     .column {
@@ -109,12 +124,12 @@
  		<div role="tabpanel">
  			<ul class="nav nav-tabs" role="tablist">
  				<li role="presentation" class="active"><a href="#today" aria-controls="today" role="tab" data-toggle="tab">Today</a></li>
- 				<li role="presentation"><a href="#datespecific" aria-controls="datespecific" role="tab" data-toggle="tab">Specific Date</a></li>
+ 				<li role="presentation" ><a href="#datespecific" aria-controls="datespecific" role="tab" data-toggle="tab">Specific Date</a></li>
  				<li role="presentation"><a href="#animation" aria-controls="animation" role="tab" data-toggle="tab">Animation</a></li>
  			</ul>
  			<div class="tab-content">
  				<div role="tabpanel" class="tab-pane active" id="today">
-                    <div class="placeholder">
+                    <div class="placeholder" align='center'>
                         <div id="map" class="column">
                             <h4>Drought severity</h4>
                         </div>
@@ -126,10 +141,20 @@
                         </div>
                     </div>
                 </div>
- 				<div role="tabpanel" class="tab-pane" id="datespecific">
- 					Specific date
+ 				<div role="tabpanel" class="tab-pane fade" id="datespecific">
+ 					<div class="placeholder" align='center'>
+                        <div id="map_dup" class="column">
+                            <h4>Drought severity</h4>
+                        </div>
+                        <div id="map_2_dup" class="column">
+                            <h4>Vulnerability</h4>
+                        </div>
+                        <div id="map_3_dup" class="column">
+                            <h4>Drought risk</h4>
+                        </div>
+                    </div>
  				</div>
- 				<div role="tabpanel" class="tab-pane" id="animation">
+ 				<div role="tabpanel" class="tab-pane fade" id="animation">
  					animation tab
  				</div>
  			</div> 			
