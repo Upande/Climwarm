@@ -10,10 +10,9 @@
     function init(){
     first_map = new ol.Map({
         target:'map',
-        renderer:'canvas',
         view: new ol.View({
             projection: 'EPSG:900913',
-            center:[3780383, 6489],
+            center:[3783258, 7880],
             zoom:13
         })
     });
@@ -46,13 +45,10 @@
     var wmsLayer3 = new ol.layer.Image({
         source: new ol.source.ImageWMS({
             url: 'http://maps.virtualkenya.org/geoserver/wms',
-            params: {'LAYERS': 'geonode:kenya_locations'},
+            params: {'LAYERS': 'geonode:_3mdepth'},
             serverType: 'geoserver' })
     });
     third_map.bindTo('view', first_map);
-
-    var myZoom = new ol.control.ZoomSlider();
-    first_map.addControl(myZoom);
 
     first_map.addLayer(newLayer);
     first_map.addLayer(wmsLayer);
@@ -72,6 +68,7 @@
     .placeholder {
         width:100%;
         height: 100%;
+        
     }
 
     .column {
@@ -113,8 +110,8 @@
  				<li role="presentation"><a href="#animation" aria-controls="animation" role="tab" data-toggle="tab">Animation</a></li>
  			</ul>
  			<div class="tab-content">
- 				<div role="tabpanel" class="tab-pane active" id="today">
-                    <div class="placeholder">
+ 				<div role="tabpanel" class="tab-pane fade active" id="today">
+                    <div class="placeholder" align='center'>
                         <div id="map" class="column">
                             <h4>Drought severity</h4>
                         </div>
@@ -126,10 +123,20 @@
                         </div>
                     </div>
                 </div>
- 				<div role="tabpanel" class="tab-pane" id="datespecific">
- 					Specific date
+ 				<div role="tabpanel" class="tab-pane fade" id="datespecific">
+ 					<div class="placeholder" align='center'>
+                        <div id="map" class="column">
+                            <h4>Drought severity</h4>
+                        </div>
+                        <div id="map_2" class="column">
+                            <h4>Vulnerability</h4>
+                        </div>
+                        <div id="map_3" class="column">
+                            <h4>Drought risk</h4>
+                        </div>
+                    </div>
  				</div>
- 				<div role="tabpanel" class="tab-pane" id="animation">
+ 				<div role="tabpanel" class="tab-pane fade" id="animation">
  					animation tab
  				</div>
  			</div> 			
