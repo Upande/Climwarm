@@ -56,6 +56,24 @@
     second_map.addLayer(wmsLayer2);
     third_map.addLayer(newLayer);
     third_map.addLayer(wmsLayer3);
+
+    first_map_dup = new ol.Map({
+        target:'map_dup'
+    });
+    first_map_dup.bindTo('layergroup', first_map);
+    first_map_dup.bindTo('view', first_map);
+
+    second_map_dup = new ol.Map({
+        target:'map_2_dup'
+    });
+    second_map_dup.bindTo('layergroup', second_map);
+    second_map_dup.bindTo('view', first_map);
+
+    third_map_dup = new ol.Map({
+        target:'map_3_dup'
+    });
+    third_map_dup.bindTo('layergroup', third_map);
+    third_map_dup.bindTo('view', first_map);
 }
 </script>
 <style>
@@ -106,7 +124,7 @@
  		<div role="tabpanel">
  			<ul class="nav nav-tabs" role="tablist">
  				<li role="presentation" class="active"><a href="#today" aria-controls="today" role="tab" data-toggle="tab">Today</a></li>
- 				<li role="presentation"><a href="#datespecific" aria-controls="datespecific" role="tab" data-toggle="tab">Specific Date</a></li>
+ 				<li role="presentation" ><a href="#datespecific" aria-controls="datespecific" role="tab" data-toggle="tab">Specific Date</a></li>
  				<li role="presentation"><a href="#animation" aria-controls="animation" role="tab" data-toggle="tab">Animation</a></li>
  			</ul>
  			<div class="tab-content">
@@ -125,13 +143,13 @@
                 </div>
  				<div role="tabpanel" class="tab-pane fade" id="datespecific">
  					<div class="placeholder" align='center'>
-                        <div id="map" class="column">
+                        <div id="map_dup" class="column">
                             <h4>Drought severity</h4>
                         </div>
-                        <div id="map_2" class="column">
+                        <div id="map_2_dup" class="column">
                             <h4>Vulnerability</h4>
                         </div>
-                        <div id="map_3" class="column">
+                        <div id="map_3_dup" class="column">
                             <h4>Drought risk</h4>
                         </div>
                     </div>
