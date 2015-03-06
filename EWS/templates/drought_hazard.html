@@ -173,10 +173,16 @@
                             <h4>Drought risk</h4>
                         </div>
                         <div class="col-lg-3">
-                            &nbsp;
-                            &nbsp;
-                            <a class="btn btn-md btn-block btn-default" href="#" role="button">Send SMS</a>
-                            <a class="btn btn-md btn-block btn-default" href="#" role="button">Send Email</a>
+                            <form method="post">{% csrf_token %}
+                                <button type="submit" class="btn btn-md btn-block btn-default">
+                                    Send SMS
+                                </button>
+                            </form>
+                            <form method="post">{% csrf_token %}
+                                <button type="submit" class="btn btn-md btn-block btn-default">
+                                    Send Email
+                                </button>
+                            </form>
                         </div>
  				</div>
  				<div role="tabpanel" class="tab-pane" id="animation">
