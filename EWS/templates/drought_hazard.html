@@ -102,12 +102,20 @@
             new ol.layer.Group({
                 title: 'Overlays',
                 layers:[ new ol.layer.Tile({
-                    title: 'Drought Turkana',
+                    title: 'Severity 1',
                     source: new ol.source.TileWMS({
                         url: 'http://maps.virtualkenya.org/geoserver/wms',
                         params: {'LAYERS': 'geonode:ndvianom_2011_apr_dek1'},
                         serverType: 'geoserver' })
-                     })
+                     }),
+                new ol.layer.Tile({
+                            title: 'Severity 2',
+                            source: new ol.source.TileWMS({
+                            url: 'http://maps.virtualkenya.org/geoserver/wms',
+                            params: {'LAYERS': 'geonode:spi_201103_dek1 '},
+                            serverType: 'geoserver' 
+                            })
+                        })
                 ]
             })
         ],
