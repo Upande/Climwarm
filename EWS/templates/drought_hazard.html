@@ -133,7 +133,7 @@
 {% endblock extra_head %}
 
 {% block main_content %}
- <div class="container">
+ <div class="container-fluid">
  	<div class="row">
  		<div class="col-xs-4 vcenter">
  			<h3>Drought Early Warning Platform</h3>
@@ -146,37 +146,40 @@
  	<div class="row">
  		<div role="tabpanel">
  			<ul class="nav nav-tabs" role="tablist">
- 				<li role="presentation" class="active"><a href="#today" aria-controls="today" role="tab" data-toggle="tab">Today</a></li>
- 				<li role="presentation" ><a href="#datespecific" aria-controls="datespecific" role="tab" data-toggle="tab">Turkana 2008</a></li>
+ 				<li role="presentation"><a href="#today" aria-controls="today" role="tab" data-toggle="tab">Today</a></li>
+ 				<li role="presentation" class="active"><a href="#datespecific" aria-controls="datespecific" role="tab" data-toggle="tab">Turkana 2008</a></li>
  				<li role="presentation"><a href="#animation" aria-controls="animation" role="tab" data-toggle="tab">Animation</a></li>
  			</ul>
  			<div class="tab-content">
- 				<div role="tabpanel" class="tab-pane active" id="today">
-                    
-                        <div id="map" class="col-xs-6 col-sm-4">
+ 				<div role="tabpanel" class="tab-pane" id="today">
+                        <div class="col-xs-6 col-sm-4">
                             <h4>Drought severity</h4>
                         </div>
-                        <div id="map_2" class="col-xs-6 col-sm-4">
+                        <div class="col-xs-6 col-sm-4">
                             <h4>Vulnerability</h4>
                         </div>
-                        <div id="map_3" class="col-xs-6 col-sm-4">
+                        <div class="col-xs-6 col-sm-4">
                             <h4>Drought risk</h4>
                         </div>
                 </div>
- 				<div role="tabpanel" class="tab-pane fade" id="datespecific" style="display:block;height: 0;overflow-y: hidden;">
- 					
-                        <div id="map_dup" class="col-xs-6 col-sm-4">
+ 				<div role="tabpanel" class="tab-pane active" id="datespecific">
+                        <div id="map" class="col-lg-3">
                             <h4>Drought severity</h4>
                         </div>
-                        <div id="map_2_dup" class="col-xs-6 col-sm-4">
+                        <div id="map_2" class="col-lg-3">
                             <h4>Vulnerability</h4>
                         </div>
-                        <div id="map_3_dup" class="col-xs-6 col-sm-4">
+                        <div id="map_3" class="col-lg-3">
                             <h4>Drought risk</h4>
                         </div>
-                
+                        <div class="col-lg-3">
+                            &nbsp;
+                            &nbsp;
+                            <a class="btn btn-md btn-block btn-default" href="#" role="button">Send SMS</a>
+                            <a class="btn btn-md btn-block btn-default" href="#" role="button">Send Email</a>
+                        </div>
  				</div>
- 				<div role="tabpanel" class="tab-pane fade" id="animation">
+ 				<div role="tabpanel" class="tab-pane" id="animation">
  					animation tab
  				</div>
  			</div> 			
