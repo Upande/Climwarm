@@ -6,7 +6,6 @@ from .views import *
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', DefaultView.as_view(), name='default'),
-    # url(r'^blog/', include('blog.urls')),
     url(r'^drought', DroughtView.as_view(), name='drought_home'),
     url(r'^flood', FloodView.as_view(), name='flood_home'),
 	url(r'^accounts/login/$', 'django.contrib.auth.views.login', 
