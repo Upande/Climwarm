@@ -173,16 +173,21 @@
                             <h4>Drought risk</h4>
                         </div>
                         <div class="col-lg-3">
-                            <form method="post">{% csrf_token %}
+                            <form method="POST">{% csrf_token %}
+                                <input type="hidden" name="alert_type" value="SMS">
                                 <button type="submit" class="btn btn-md btn-block btn-default">
                                     Send SMS
                                 </button>
                             </form>
+                            <a href="#" class="btn btn-md btn-block btn-default">Send Email</a>
+                            <!--
                             <form method="post">{% csrf_token %}
+                                <input type="hidden" name="alert_type" value="EMAIL">
                                 <button type="submit" class="btn btn-md btn-block btn-default">
                                     Send Email
                                 </button>
                             </form>
+                            -->
                         </div>
  				</div>
  				<div role="tabpanel" class="tab-pane" id="animation">
