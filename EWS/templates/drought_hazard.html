@@ -19,8 +19,8 @@
     var first_map, second_map, third_map 
 
     function init(){
-    first_map = new ol.Map({
-        target:'map',
+    first_map_dub = new ol.Map({
+        target:'map_dub',
         layers: [new ol.layer.Group({
             title: 'Base Maps',
             layers: [
@@ -45,9 +45,76 @@
             })
         ],
         view: new ol.View({
-            projection: 'EPSG:900913',
+            projection: 'EPSG:3857',
             center:[4206847, 50232],
             zoom:5
+            })
+    });
+    
+    second_map_dub = new ol.Map({
+        target:'map_2_dub',
+        layers: [new ol.layer.Group({
+            title: 'Base Maps',
+            layers: [
+            new ol.layer.Tile({
+                title: 'OSM',
+                type: 'base',
+                visible: true,
+                source: new ol.source.OSM()
+                    })
+                ]
+            })
+         ]   
+    });
+    
+    third_map_dub= new ol.Map({
+        target:'map_3_dub',
+        layers: [new ol.layer.Group({
+            title: 'Base Maps',
+            layers: [
+            new ol.layer.Tile({
+                title: 'OSM',
+                type: 'base',
+                visible: true,
+                source: new ol.source.OSM()
+                    })
+                ]
+            })
+            
+        ]
+    });
+    second_map_dub.bindTo('view', first_map_dub);
+    third_map_dub.bindTo('view', first_map_dub);
+
+    first_map = new ol.Map({
+        target:'map',
+        layers: [new ol.layer.Group({
+            title: 'Base Maps',
+            layers: [
+            new ol.layer.Tile({
+                title: 'OSM',
+                type: 'base',
+                visible: true,
+                source: new ol.source.OSM()
+                    })
+                ]
+            }),
+            new ol.layer.Group({
+                title: 'Overlays',
+                layers:[ new ol.layer.Tile({
+                    title: 'Drought Turkana',
+                    source: new ol.source.TileWMS({
+                        url: 'http://maps.virtualkenya.org/geoserver/wms',
+                        params: {'LAYERS': 'geonode:ndvianom_2011_apr_dek1'},
+                        serverType: 'geoserver' })
+                     })
+                ]
+            })
+        ],
+        view: new ol.View({
+            projection: 'EPSG:900913',
+            center:[3930427, 359171],
+            zoom:6
             })
     });
     
@@ -119,7 +186,7 @@
     
 
     var layerSwitcher = new ol.control.LayerSwitcher();
-    third_map.addControl(layerSwitcher);
+    first_map.addControl(layerSwitcher);
     
 }
 </script>
@@ -152,13 +219,13 @@
  			</ul>
  			<div class="tab-content">
  				<div role="tabpanel" class="tab-pane" id="today">
-                        <div class="col-xs-6 col-sm-4">
+                        <div id="map_dub" class="col-xs-6 col-sm-4">
                             <h4>Drought severity</h4>
                         </div>
-                        <div class="col-xs-6 col-sm-4">
+                        <div id="map_2_dub" class="col-xs-6 col-sm-4">
                             <h4>Vulnerability</h4>
                         </div>
-                        <div class="col-xs-6 col-sm-4">
+                        <div id="map_3_dub" class="col-xs-6 col-sm-4">
                             <h4>Drought risk</h4>
                         </div>
                 </div>
