@@ -20,15 +20,14 @@ class DroughtView(TemplateView):
 			data = simplejson.load(f)
 			gateway = AfricasTalkingGateway('upande', '5da433821fa3efe8d793bfb95da80e63a4f2909c559ea58cc5a8e096fa568965')
 			for item in data['features']:
-				msisdn = item['properties']['Snippet']
-				#print item['properties']['Snippet']
+				msisdn = item['properties']['SNIPPET']
 				print msisdn
 				gateway.sendMessage(msisdn, 'Drought alert SMS from Early Warning System')
 			gateway.sendMessage('+254722659526', 'Drought alert SMS from Early Warning System')
 		except Exception as ex:
 			print 'exception: {0}'.format(ex.message)
 			pass
-
+			
 		return redirect(reverse('drought_home'))
 
 class FloodView(TemplateView):
