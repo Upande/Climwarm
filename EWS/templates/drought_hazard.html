@@ -26,7 +26,6 @@
             layers: [
             new ol.layer.Tile({
                 title: 'OSM',
-                type: 'base',
                 visible: true,
                 source: new ol.source.OSM()
                     })
@@ -83,11 +82,8 @@
             
         ]
     });
-    second_map_dub.bindTo('view', first_map_dub);
-    third_map_dub.bindTo('view', first_map_dub);
-
-    first_map = new ol.Map({
-        target:'map',
+    four_map_dub= new ol.Map({
+        target:'map_4_dub',
         layers: [new ol.layer.Group({
             title: 'Base Maps',
             layers: [
@@ -98,23 +94,74 @@
                 source: new ol.source.OSM()
                     })
                 ]
+            })
+        ]
+    });
+    second_map_dub.bindTo('view', first_map_dub);
+    third_map_dub.bindTo('view', first_map_dub);
+    four_map_dub.bindTo('view', first_map_dub);
+
+    first_map = new ol.Map({
+        target:'map',
+        layers: [new ol.layer.Group({
+            title: 'Base Maps',
+            layers: [
+            new ol.layer.Tile({
+                title: 'OSM',
+                visible: true,
+                source: new ol.source.OSM()
+                    })
+                ]
             }),
             new ol.layer.Group({
                 title: 'Overlays',
                 layers:[ new ol.layer.Tile({
-                    title: 'NDVI',
+                    title: '- NDVI',
+                    type: 'base',
                     source: new ol.source.TileWMS({
                         url: 'http://maps.virtualkenya.org/geoserver/wms',
                         params: {'LAYERS': 'geonode:ndvianom_2011_apr_dek1'},
                         serverType: 'geoserver' })
                      }),
                 new ol.layer.Tile({
-                            title: 'Severity',
+                            title: '- Hazard',
+                            type: 'base',
                             source: new ol.source.TileWMS({
                             url: 'http://maps.virtualkenya.org/geoserver/wms',
                             params: {'LAYERS': 'geonode:spi_201103_dek1 '},
-                            serverType: 'geoserver' 
-                            })
+                            serverType: 'geoserver' })
+                            }),
+                    new ol.layer.Tile({
+                            title: '- Anom',
+                            type: 'base',
+                            source: new ol.source.TileWMS({
+                            url: 'http://maps.virtualkenya.org/geoserver/wms',
+                            params: {'LAYERS': 'geonode:spi_201103_dek1 '},
+                            serverType: 'geoserver' })
+                        }),
+                    new ol.layer.Tile({
+                            title: '- Aver',
+                            type: 'base',
+                            source: new ol.source.TileWMS({
+                            url: 'http://maps.virtualkenya.org/geoserver/wms',
+                            params: {'LAYERS': 'geonode:spi_201103_dek1 '},
+                            serverType: 'geoserver' })
+                        }),
+                    new ol.layer.Tile({
+                            title: '- Ita',
+                            type: 'base',
+                            source: new ol.source.TileWMS({
+                            url: 'http://maps.virtualkenya.org/geoserver/wms',
+                            params: {'LAYERS': 'geonode:spi_201103_dek1 '},
+                            serverType: 'geoserver' })
+                        }),
+                    new ol.layer.Tile({
+                            title: '- Spi',
+                            type: 'base',
+                            source: new ol.source.TileWMS({
+                            url: 'http://maps.virtualkenya.org/geoserver/wms',
+                            params: {'LAYERS': 'geonode:spi_201103_dek1 '},
+                            serverType: 'geoserver' })
                         })
                 ]
             })
@@ -176,21 +223,41 @@
                         params: {'LAYERS': 'geonode:dr_03_dek3'},
                         serverType: 'geoserver' 
                             })
-                     }),
-                        new ol.layer.Tile({
-                            title: 'Constituencies',
-                            source: new ol.source.TileWMS({
-                            url: 'http://maps.virtualkenya.org/geoserver/wms',
-                            params: {'LAYERS': 'geonode:drought_constituencies '},
-                            serverType: 'geoserver' 
+                     })
+                ]
+            })
+        ]
+    });
+    four_map = new ol.Map({
+        target:'map_4',
+        layers: [new ol.layer.Group({
+            title: 'Base Maps',
+            layers: [
+            new ol.layer.Tile({
+                title: 'OSM',
+                type: 'base',
+                visible: true,
+                source: new ol.source.OSM()
+                    })
+                ]
+            }),
+            new ol.layer.Group({
+                title: 'Overlays',
+                layers:[ new ol.layer.Tile({
+                    title: 'Drought Turkana',
+                    source: new ol.source.TileWMS({
+                        url: 'http://maps.virtualkenya.org/geoserver/wms',
+                        params: {'LAYERS': 'geonode:drought_constituencies'},
+                        serverType: 'geoserver' 
                             })
-                        })
+                     })
                 ]
             })
         ]
     });
     second_map.bindTo('view', first_map);
     third_map.bindTo('view', first_map);
+    four_map.bindTo('view', first_map);
     
 
     var layerSwitcher = new ol.control.LayerSwitcher();
@@ -204,6 +271,13 @@
         vertical-align: middle;
         float: none;
     }
+    
+.column{
+float:left;
+width:350px;
+background:#fff;
+padding:10px;
+}
 </style>
 {% endblock extra_head %}
 
@@ -227,27 +301,52 @@
  			</ul>
  			<div class="tab-content">
  				<div role="tabpanel" class="tab-pane fade" id="today">
-                        <div id="map_dub" class="col-xs-6 col-sm-4">
-                            <h4>Drought severity</h4>
+                        <div id="map_dub" class="col-md-4">
+                            <h4>Hazard</h4>
                         </div>
-                        <div id="map_2_dub" class="col-xs-6 col-sm-4">
+                        <div id="map_2_dub" class="col-md-4">
                             <h4>Vulnerability</h4>
                         </div>
-                        <div id="map_3_dub" class="col-xs-6 col-sm-4">
-                            <h4>Drought risk</h4>
+                        <div id="map_3_dub" class="col-md-4">
+                            <h4>Risk</h4>
+                        </div>
+                        <div id="map_4_dub" class="col-md-4">
+                            <h4>User</h4>
                         </div>
                 </div>
  				<div role="tabpanel" class="tab-pane active" id="datespecific">
-                        <div id="map" class="col-lg-3">
-                            <h4>Drought severity</h4>
-                        </div>
-                        <div id="map_2" class="col-lg-3">
-                            <h4>Vulnerability</h4>
-                        </div>
-                        <div id="map_3" class="col-lg-3">
-                            <h4>Drought risk</h4>
-                        </div>
-                        <div class="col-lg-3">
+                        <table>
+                            <tr>
+                                <td class="column" id="map"><h4>Hazard<h4></td>
+                                <td class="column" id="map_2"><h4>Vulnerability<h4></td>
+                                <td class="column"></td>
+                                <td class="col-sm-1" align='right'>
+
+                                        <form method="POST">{% csrf_token %}
+                                        <input type="hidden" name="alert_type" value="SMS">
+                                            <button type="submit" class="btn btn-md btn-block btn-default">
+                                             Send SMS
+                                            </button>
+                                        </form>
+                                        <a href="#" class="btn btn-md btn-block btn-default">Send Email</a>
+                                        <!--
+                                        <form method="post">{% csrf_token %}
+                                            <input type="hidden" name="alert_type" value="EMAIL">
+                                            <button type="submit" class="btn btn-md btn-block btn-default">
+                                                Send Email
+                                            </button>
+                                        </form>
+                                        -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="column" id="map_3"><h4>Risk<h4></td>
+                                <td class="column" id="map_4"><h4>User<h4></td>
+                            </tr>
+                        </table>
+                        
+                        <div class="col-sm-2" align='right'>
+
                             <form method="POST">{% csrf_token %}
                                 <input type="hidden" name="alert_type" value="SMS">
                                 <button type="submit" class="btn btn-md btn-block btn-default">
