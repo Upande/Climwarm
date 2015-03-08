@@ -3,12 +3,12 @@
 {% block title %}Clim-Warn Early warning platform - UNEP{% endblock title %}
 {% block extra_head %}
 <link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/css/ol.css" type="text/css">
-<script src="{{ STATIC_URL }}/js/jquery-1.11.2.min.js" type="text/javascript"></script>
-<script src="{{ STATIC_URL }}/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js" type="text/javascript"></script>
 <script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
 <script type='text/javascript'>
 
-    $(document).ready(function () {
+    jQuery(document).ready(function ($) {
     $('.nav-tabs').tab();
         });
 
@@ -17,10 +17,9 @@
     function init(){
     first_map = new ol.Map({
         target:'map',
-        renderer:'canvas',
         view: new ol.View({
             projection: 'EPSG:900913',
-            center:[3780383, 6489],
+            center:[3783258, 7880],
             zoom:13
         })
     });
@@ -31,7 +30,7 @@
     var wmsLayer = new ol.layer.Image({
         source: new ol.source.ImageWMS({
             url: 'http://maps.virtualkenya.org/geoserver/wms',
-            params: {'LAYERS': 'geonode:flood_homes'},
+            params: {'LAYERS': 'geonode:_3mdepth'},
             serverType: 'geoserver' })
     });
 
@@ -53,7 +52,7 @@
     var wmsLayer3 = new ol.layer.Image({
         source: new ol.source.ImageWMS({
             url: 'http://maps.virtualkenya.org/geoserver/wms',
-            params: {'LAYERS': 'geonode:kenya_locations'},
+            params: {'LAYERS': 'geonode:flood_homes'},
             serverType: 'geoserver' })
     });
     third_map.bindTo('view', first_map);
@@ -121,7 +120,7 @@
  			</ul>
  			<div class="tab-content">
  				<div role="tabpanel" class="tab-pane active" id="today">
-                    <div id="map" class="col-xs-6 col-sm-4">
+                        <div id="map" class="col-xs-6 col-sm-4">
                             <h4>Flood severity</h4>
                         </div>
                         <div id="map_2" class="col-xs-6 col-sm-4">
