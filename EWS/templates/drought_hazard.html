@@ -274,9 +274,11 @@
     
 .column{
 float:left;
-width:500px;
-background:#fff;
-padding:10px;
+width:550px;
+height:300px;
+padding:20px;
+overflow-y:hidden;
+
 }
 </style>
 {% endblock extra_head %}
@@ -321,7 +323,6 @@ padding:10px;
                             <tr>
                                 <td class="column" id="map"><h4>Hazard<h4></td>
                                 <td class="column" id="map_2"><h4>Vulnerability<h4></td>
-                                <td class="column"></td>
                                 <td class="col-sm-1" align='right'>
 
                                         <form method="POST">{% csrf_token %}
