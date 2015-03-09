@@ -8,144 +8,19 @@
 <script src="{{ STATIC_URL }}js/ol.js"></script>
 <script src="{{ STATIC_URL }}js/ol3-layerswitcher.js"></script>
 <script src="{{ STATIC_URL }}js/layerswitcher.js"></script>
-<!script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
+<script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}national_map.js"></script>
 
 <script type='text/javascript'>
 
     $(document).ready(function () {
-    $('#tablist').tab();
-        });
+        load_national_map();
+        $('#tablist').tab();
+    });
 
     var first_map, second_map, third_map 
 
     function init(){
-
-    national_map = new ol.Map({
-        target:'nat_map',
-        layers: [new ol.layer.Group({
-            title: 'Base Maps',
-            layers: [
-            new ol.layer.Tile({
-                title: 'OSM',
-                visible: true,
-                source: new ol.source.OSM()
-                    })
-                ]
-            }),
-            new ol.layer.Group({
-                title: 'Overlays',
-                layers:[ new ol.layer.Tile({
-                    title: '-Wards spi',
-                    source: new ol.source.TileWMS({
-                        url: 'http://maps.virtualkenya.org/geoserver/wms',
-                        params: {layers: 'geonode:ke_wards_spi_2014_ond'},
-                        serverType: 'geoserver' })
-                     }),
-                new ol.layer.Tile({
-                    title: '-County spi',
-                    source: new ol.source.TileWMS({
-                        url: 'http://maps.virtualkenya.org/geoserver/wms',
-                        params: {layers: 'geonode:ke_county_spi_2014_ond'},
-                        serverType: 'geoserver' })
-                     }),
-                new ol.layer.Tile({
-                    title: '-Turkana Spi',
-                    source: new ol.source.TileWMS({
-                        url: 'http://maps.virtualkenya.org/geoserver/wms',
-                        params: {layers: 'geonode:turkana_spi_2014_ond'},
-                        serverType: 'geoserver' })
-                     })
-                ]
-            })
-        ],
-        view: new ol.View({
-            projection: 'EPSG:3857',
-            center:[4206847, 50232],
-            zoom:6
-            })
-    });
-
-    first_map_dub = new ol.Map({
-        target:'map_dub',
-        layers: [new ol.layer.Group({
-            title: 'Base Maps',
-            layers: [
-            new ol.layer.Tile({
-                title: 'OSM',
-                visible: true,
-                source: new ol.source.OSM()
-                    })
-                ]
-            }),
-            new ol.layer.Group({
-                title: 'Overlays',
-                layers:[ new ol.layer.Tile({
-                    title: 'Drought Turkana',
-                    source: new ol.source.TileWMS({
-                        url: 'http://maps.virtualkenya.org/geoserver/wms',
-                        params: {'LAYERS': ''},
-                        serverType: 'geoserver' })
-                     })
-                ]
-            })
-        ],
-        view: new ol.View({
-            projection: 'EPSG:3857',
-            center:[4206847, 50232],
-            zoom:5
-            })
-    });
-    
-    second_map_dub = new ol.Map({
-        target:'map_2_dub',
-        layers: [new ol.layer.Group({
-            title: 'Base Maps',
-            layers: [
-            new ol.layer.Tile({
-                title: 'OSM',
-                type: 'base',
-                visible: true,
-                source: new ol.source.OSM()
-                    })
-                ]
-            })
-         ]   
-    });
-    
-    third_map_dub= new ol.Map({
-        target:'map_3_dub',
-        layers: [new ol.layer.Group({
-            title: 'Base Maps',
-            layers: [
-            new ol.layer.Tile({
-                title: 'OSM',
-                type: 'base',
-                visible: true,
-                source: new ol.source.OSM()
-                    })
-                ]
-            })
-            
-        ]
-    });
-    four_map_dub= new ol.Map({
-        target:'map_4_dub',
-        layers: [new ol.layer.Group({
-            title: 'Base Maps',
-            layers: [
-            new ol.layer.Tile({
-                title: 'OSM',
-                type: 'base',
-                visible: true,
-                source: new ol.source.OSM()
-                    })
-                ]
-            })
-        ]
-    });
-    second_map_dub.bindTo('view', first_map_dub);
-    third_map_dub.bindTo('view', first_map_dub);
-    four_map_dub.bindTo('view', first_map_dub);
 
     first_map = new ol.Map({
         target:'map',
@@ -317,7 +192,6 @@
     //national_map.addControl(layerSwitcher);
     
 }
-
 </script>
 <style>
     .vcenter {
@@ -354,31 +228,19 @@ overflow-y:hidden;
  	<div class="row">
  		<div role="tabpanel">
  			<ul class="nav nav-tabs" role="tablist">
- 				<!--li role="presentation"><a href="#today" aria-controls="today" role="tab" data-toggle="tab">Today</a></li-->
-                <li role="presentation"><a href="#national" aria-controls="national" role="tab" data-toggle="tab">National</a></li>
- 				<li role="presentation" class="active"><a href="#datespecific" aria-controls="datespecific" role="tab" data-toggle="tab">Turkana 2011</a></li>
+                <li role="presentation" class="active"><a href="#national" aria-controls="national" role="tab" data-toggle="tab">National</a></li>
+ 				<li role="presentation"><a href="#datespecific" aria-controls="datespecific" role="tab" data-toggle="tab">Turkana 2011</a></li>
  				<li role="presentation"><a href="#animation" aria-controls="animation" role="tab" data-toggle="tab">2011 Animation</a></li>
  			</ul>
             
  			<div class="tab-content">
- 				<div role="tabpanel" class="tab-pane fade" id="today">
-                    <table>
-                        <tr>
-                            <td class="column" id="map_dub"><h4>Hazard<h4></td>
-                            <td class="column" id="map_2_dub"><h4>Vulnerability<h4></td>
-                        </tr>
-                        <tr>
-                            <td class="column" id="map_3_dub"><h4>Risk<h4></td>
-                            <td class="column" id="map_4_dub"><h4>User<h4></td>
-                        </tr>
-
-                    </table>
-                
-                </div>
-
-                <div role="tabpanel" class="tab-pane fade" id="national">
-        
-                        <div id="nat_map" class="col-xs-12 col-sm-6 col-lg-8 col-sm-offset-2"><h4 align="center">National</h4></div>
+                <div role="tabpanel" class="tab-pane active" id="national">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h4 align="center">National</h4>
+                            <div id="nat_map"></div>
+                        </div>
+                    </div>
                 </div>
         
  				<div role="tabpanel" class="tab-pane active" id="datespecific">
