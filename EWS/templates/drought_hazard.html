@@ -324,22 +324,18 @@ overflow-y:hidden;
                                 <td class="column" id="map"><h4>Hazard<h4></td>
                                 <td class="column" id="map_2"><h4>Vulnerability<h4></td>
                                 <td class="col-sm-1" align='right'>
-
-                                        <form method="POST">{% csrf_token %}
+                                    <form method="POST">{% csrf_token %}
                                         <input type="hidden" name="alert_type" value="SMS">
-                                            <button type="submit" class="btn btn-md btn-block btn-default">
-                                             Send SMS
-                                            </button>
-                                        </form>
-                                        <a href="#" class="btn btn-md btn-block btn-default">Send Email</a>
-                                        <!--
-                                        <form method="post">{% csrf_token %}
-                                            <input type="hidden" name="alert_type" value="EMAIL">
-                                            <button type="submit" class="btn btn-md btn-block btn-default">
-                                                Send Email
-                                            </button>
-                                        </form>
-                                        -->
+                                        <button type="submit" class="btn btn-md btn-block btn-default">
+                                            Send SMS
+                                        </button>
+                                    </form>
+                                    <form method="POST">{% csrf_token %}
+                                        <input type="hidden" name="alert_type" value="EMAIL">
+                                        <button type="submit" class="btn btn-md btn-block btn-default">
+                                            Send Email
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             <tr>
@@ -348,32 +344,6 @@ overflow-y:hidden;
                                 <td><img src="http://maps.virtualkenya.org/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=geonode:dr_03_dek3&legend_options=fontName:Times%20New%20Roman;fontAntiAliasing:true;fontColor:0x000033;fontSize:14;bgColor:0xFFFFEE;dpi:180"/></td>
                             </tr>
                         </table>
-                        <!--
-                        <div class="col-sm-2" align='right'>
-
-                            <form method="POST">{% csrf_token %}
-                                <input type="hidden" name="alert_type" value="SMS">
-                                <button type="submit" class="btn btn-md btn-block btn-default">
-                                    Send SMS
-                                </button>
-                            </form>
-<<<<<<< HEAD
-                            <a href="#" class="btn btn-md btn-block btn-default">Send Email</a>
-                        
-=======
->>>>>>> 4687dcb1ff44b897f9f65a7cbd816b03cc94696e
-                            <form method="post">{% csrf_token %}
-                                <input type="hidden" name="alert_type" value="EMAIL">
-                                <button type="submit" class="btn btn-md btn-block btn-default">
-                                    Send Email
-                                </button>
-                            </form>
-<<<<<<< HEAD
-                            
-=======
->>>>>>> 4687dcb1ff44b897f9f65a7cbd816b03cc94696e
-                        </div>
-                            -->
  				</div>
  				<div role="tabpanel" class="tab-pane" id="animation">
  					<img src='http://maps.virtualkenya.org/geoserver/floodmaps/wms/animate?
