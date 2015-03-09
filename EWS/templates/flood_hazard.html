@@ -5,83 +5,161 @@
 <link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/css/ol.css" type="text/css">
 <script src="{{ STATIC_URL }}js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="{{ STATIC_URL }}js/bootstrap.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/ol.js"></script>
+<script src="{{ STATIC_URL }}js/ol3-layerswitcher.js"></script>
+<script src="{{ STATIC_URL }}js/layerswitcher.js"></script>
 <script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
+
 <script type='text/javascript'>
 
-    jQuery(document).ready(function ($) {
-    $('.nav-tabs').tab();
+    $(document).ready(function () {
+    $('#tablist').tab();
         });
 
     var first_map, second_map, third_map 
 
     function init(){
+
     first_map = new ol.Map({
         target:'map',
+        layers: [new ol.layer.Group({
+            title: 'Base Maps',
+            layers: [
+            new ol.layer.Tile({
+                title: 'Bing Maps',
+                visible: true,
+                source: new ol.source.BingMaps({
+                    key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
+                    imagerySet: 'AerialWithLabels'
+                         })
+                    })
+                ]
+            }),
+            new ol.layer.Group({
+                title: 'Overlays',
+                layers:[ new ol.layer.Tile({
+                    title: '- 3.4m depth',
+                    type: 'base',
+                    source: new ol.source.TileWMS({
+                        url: 'http://maps.virtualkenya.org/geoserver/wms',
+                        params: {'LAYERS': 'geonode:_2013_3_4mdepth'},
+                        serverType: 'geoserver' })
+                    
+                     })
+                ]
+            })
+        ],
         view: new ol.View({
             projection: 'EPSG:900913',
-            center:[3783258, 7880],
-            zoom:13
-        })
-    });
-    var newLayer = new ol.layer.Tile({
-        source: new ol.source.OSM()
-    });
-
-    var wmsLayer = new ol.layer.Image({
-        source: new ol.source.ImageWMS({
-            url: 'http://maps.virtualkenya.org/geoserver/wms',
-            params: {'LAYERS': 'geonode:_3mdepth'},
-            serverType: 'geoserver' })
-    });
-
-    second_map = new ol.Map({
-        target:'map_2'
+            center:[3788403, 12762],
+            zoom:11
+            })
     });
     
-    var wmsLayer2 = new ol.layer.Image({
-        source: new ol.source.ImageWMS({
-            url: 'http://maps.virtualkenya.org/geoserver/wms',
-            params: {'LAYERS': 'geonode:depth3shape'},
-            serverType: 'geoserver' })
+    second_map = new ol.Map({
+        target:'map_2',
+        layers: [new ol.layer.Group({
+            title: 'Base Maps',
+            layers: [
+            new ol.layer.Tile({
+                title: 'Bing Maps',
+                type: 'base',
+                visible: true,
+                source: new ol.source.BingMaps({
+                    key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
+                    imagerySet: 'AerialWithLabels'
+                    
+                        })
+                    })
+                ]
+            }),
+            new ol.layer.Group({
+                title: 'Overlays',
+                layers:[ new ol.layer.Tile({
+                    title: 'vulnerability',
+                    source: new ol.source.TileWMS({
+                        url: 'http://maps.virtualkenya.org/geoserver/wms',
+                        params: {'LAYERS': 'geonode:nzoia_vulnerability'},
+                        serverType: 'geoserver' 
+                            })
+                     })
+                ]
+            })
+        ]
+    });
+    
+    third_map = new ol.Map({
+        target:'map_3',
+        layers: [new ol.layer.Group({
+            title: 'Base Maps',
+            layers: [
+            new ol.layer.Tile({
+                title: 'Bing Maps',
+                type: 'base',
+                visible: true,
+                source: new ol.source.BingMaps({
+                    key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
+                    imagerySet: 'AerialWithLabels'
+
+                        })
+                    })
+                ]
+            }),
+            new ol.layer.Group({
+                title: 'Overlays',
+                layers:[ new ol.layer.Tile({
+                    title: 'flood homes',
+                    source: new ol.source.TileWMS({
+                        url: 'http://maps.virtualkenya.org/geoserver/wms',
+                        params: {'LAYERS': 'geonode:flood_homes'},
+                        serverType: 'geoserver' 
+                            })
+                     })
+                ]
+            })
+        ]
+    });
+    four_map = new ol.Map({
+        target:'map_4',
+        layers: [new ol.layer.Group({
+            title: 'Base Maps',
+            layers: [
+            new ol.layer.Tile({
+                title: 'Bing Maps',
+                type: 'base',
+                visible: true,
+                source: new ol.source.BingMaps({
+                    key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
+                    imagerySet: 'AerialWithLabels'
+
+                        })
+                    })
+                ]
+            }),
+            new ol.layer.Group({
+                title: 'Overlays',
+                layers:[ new ol.layer.Tile({
+                    title: 'affected_constituencies',
+                    source: new ol.source.TileWMS({
+                        url: 'http://maps.virtualkenya.org/geoserver/wms',
+                        params: {'LAYERS': 'geonode:affected_constituencies'},
+                        serverType: 'geoserver' 
+                            })
+                     })
+                ]
+            })
+        ]
     });
     second_map.bindTo('view', first_map);
-
-    third_map = new ol.Map({
-        target:'map_3'
-    });
-    var wmsLayer3 = new ol.layer.Image({
-        source: new ol.source.ImageWMS({
-            url: 'http://maps.virtualkenya.org/geoserver/wms',
-            params: {'LAYERS': 'geonode:flood_homes'},
-            serverType: 'geoserver' })
-    });
     third_map.bindTo('view', first_map);
+    four_map.bindTo('view', first_map);
+    
 
-    first_map.addLayer(newLayer);
-    first_map.addLayer(wmsLayer);
-    second_map.addLayer(newLayer);
-    second_map.addLayer(wmsLayer2);
-    third_map.addLayer(newLayer);
-    third_map.addLayer(wmsLayer3);
-
-    first_map_dup = new ol.Map({
-        target:'map_dup'
-    });
-    first_map_dup.bindTo('layergroup', first_map);
-    first_map_dup.bindTo('view', first_map);
-
-    second_map_dup = new ol.Map({
-        target:'map_2_dup'
-    });
-    second_map_dup.bindTo('layergroup', second_map);
-    second_map_dup.bindTo('view', first_map);
-
-    third_map_dup = new ol.Map({
-        target:'map_3_dup'
-    });
-    third_map_dup.bindTo('layergroup', third_map);
-    third_map_dup.bindTo('view', first_map);
+    var layerSwitcher = new ol.control.LayerSwitcher();
+    first_map.addControl(layerSwitcher);
+    
 }
+
 </script>
 <style>
     .vcenter {
@@ -89,24 +167,28 @@
         vertical-align: middle;
         float: none;
     }
+    
+.column{
+float:left;
+width:550px;
+height:300px;
+padding:20px;
+overflow-y:hidden;
 
+}
+.ol_legend {
+    bottom: 0px; left: 0px; position: absolute; background-color: #FFFFFF;
+    }
 </style>
 {% endblock extra_head %}
 
 {% block main_content %}
- <div class="container">
+ <div class="container-fluid">
  	<div class="row">
  		<div class="col-xs-4 vcenter">
  			<h3>Flood Early Warning Platform</h3>
  		</div>
- 		<div class="col-xs-4 vcenter">
- 			<form class="form-horizontal">
- 				<div class="form-group">
- 					<select id="location" class="form-control">
- 						<option>Turkana</option>
- 					</select>
- 				</div>
- 			</form>
+ 		<div class="col-xs-4 vcenter">&nbsp;
  		</div>
  		<div class="col-xs-4 vcenter">
  		</div>
@@ -114,38 +196,64 @@
  	<div class="row">
  		<div role="tabpanel">
  			<ul class="nav nav-tabs" role="tablist">
- 				<li role="presentation" class="active"><a href="#today" aria-controls="today" role="tab" data-toggle="tab">Today</a></li>
- 				<li role="presentation"><a href="#datespecific" aria-controls="datespecific" role="tab" data-toggle="tab">Specific Date</a></li>
- 				<li role="presentation"><a href="#animation" aria-controls="animation" role="tab" data-toggle="tab">Animation</a></li>
+ 				<li role="presentation" class="active"><a href="#datespecific" aria-controls="datespecific" role="tab" data-toggle="tab">Nzoia 2013</a></li>
+ 				<li role="presentation"><a href="#animation" aria-controls="animation" role="tab" data-toggle="tab">2013 Animation</a></li>
  			</ul>
+            
  			<div class="tab-content">
- 				<div role="tabpanel" class="tab-pane active" id="today">
-                        <div id="map" class="col-xs-6 col-sm-4">
-                            <h4>Flood severity</h4>
+        
+ 				<div role="tabpanel" class="tab-pane active" id="datespecific">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h4>Severity</h4>
+                            <div id="map"></div>
+                            <div class="pull-right">
+                                <img src = "http://maps.virtualkenya.org/geoserver//wms?request=GetLegendGraphic&format=image/png&WIDTH=10&HEIGHT=10&LAYER=:_2013_3_4mdepth&legend_options=fontAntiAliasing:true;fontSize:7;forceLabels:on"/>
+                            </div>         
                         </div>
-                        <div id="map_2" class="col-xs-6 col-sm-4">
+                        <div class="col-md-5">
                             <h4>Vulnerability</h4>
+                            <div id="map_2"></div> 
+                            <div class="pull-right">
+                                <img src = "http://maps.virtualkenya.org/geoserver//wms?request=GetLegendGraphic&format=image/png&WIDTH=10&HEIGHT=10&LAYER=:nzoia_vulnerability&legend_options=fontAntiAliasing:true;fontSize:7;forceLabels:on"/>
+                            </div>                           
                         </div>
-                        <div id="map_3" class="col-xs-6 col-sm-4">
-                            <h4>Flood risk</h4>
+                        <div class="col-md-2">
+                            <div>&nbsp;</div>
+                            <form method="POST">{% csrf_token %}
+                                <input type="hidden" name="alert_type" value="SMS">
+                                <button type="submit" class="btn btn-md btn-block btn-default">
+                                    Send SMS
+                                </button>
+                            </form>
+                            <div>&nbsp;</div>
+                            <form method="POST">{% csrf_token %}
+                                <input type="hidden" name="alert_type" value="EMAIL">
+                                <button type="submit" class="btn btn-md btn-block btn-default">
+                                    Send Email
+                                </button>
+                            </form>
+                            <div>&nbsp;</div>
+                            <a href="/drought">Go to drought</a>
                         </div>
-                </div>
- 				<div role="tabpanel" class="tab-pane fade" id="datespecific">
- 					<div id="map_dub" class="col-xs-6 col-sm-4">
-                            <h4>Flood severity</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h4>Risk</h4>
+                            <div id="map_3"></div>
                         </div>
-                        <div id="map_2_dub" class="col-xs-6 col-sm-4">
-                            <h4>Vulnerability</h4>
+                        <div class="col-md-5">
+                            <h4>User</h4>
+                            <div id="map_4"></div>
                         </div>
-                        <div id="map_3_dub" class="col-xs-6 col-sm-4">
-                            <h4>Flood risk</h4>
-                        </div>
+                    </div>
  				</div>
- 				<div role="tabpanel" class="tab-pane fade" id="animation">
- 					animation tab
+ 				<div role="tabpanel" class="tab-pane" id="animation">
+ 					<img src='http://maps.virtualkenya.org/geoserver/floodmaps/wms/animate?service=WMS&aparam=env:time&avalues=2015-06-03,2015-07-03,%202015-08-03,%202015-09-03&version=1.1.0&request=GetMap&layers=floodmaps:floodmaps_2013&styles=&bbox=33.950770216537,0.055127873765,34.162714661151,0.155127873845&width=699&height=330&srs=EPSG:4326&format=image/gif;subtype=animated&format_options=layout:floodmaps_2013_msg;gif_loop_continuosly:true&time=2015-06-03,%202015-07-03,%202015-08-03,%202015-09-03'/>
  				</div>
  			</div> 			
  		</div>
  	</div>
  </div>
+
 {% endblock main_content %}
