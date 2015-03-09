@@ -8,7 +8,7 @@
 <script src="{{ STATIC_URL }}js/ol.js"></script>
 <script src="{{ STATIC_URL }}js/ol3-layerswitcher.js"></script>
 <script src="{{ STATIC_URL }}js/layerswitcher.js"></script>
-<script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
+<!script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
 
 <script type='text/javascript'>
 
@@ -19,6 +19,52 @@
     var first_map, second_map, third_map 
 
     function init(){
+
+    national_map = new ol.Map({
+        target:'nat_map',
+        layers: [new ol.layer.Group({
+            title: 'Base Maps',
+            layers: [
+            new ol.layer.Tile({
+                title: 'OSM',
+                visible: true,
+                source: new ol.source.OSM()
+                    })
+                ]
+            }),
+            new ol.layer.Group({
+                title: 'Overlays',
+                layers:[ new ol.layer.Tile({
+                    title: '-Wards spi',
+                    source: new ol.source.TileWMS({
+                        url: 'http://maps.virtualkenya.org/geoserver/wms',
+                        params: {layers: 'geonode:ke_wards_spi_2014_ond'},
+                        serverType: 'geoserver' })
+                     }),
+                new ol.layer.Tile({
+                    title: '-County spi',
+                    source: new ol.source.TileWMS({
+                        url: 'http://maps.virtualkenya.org/geoserver/wms',
+                        params: {layers: 'geonode:ke_county_spi_2014_ond'},
+                        serverType: 'geoserver' })
+                     }),
+                new ol.layer.Tile({
+                    title: '-Turkana Spi',
+                    source: new ol.source.TileWMS({
+                        url: 'http://maps.virtualkenya.org/geoserver/wms',
+                        params: {layers: 'geonode:turkana_spi_2014_ond'},
+                        serverType: 'geoserver' })
+                     })
+                ]
+            })
+        ],
+        view: new ol.View({
+            projection: 'EPSG:3857',
+            center:[4206847, 50232],
+            zoom:6
+            })
+    });
+
     first_map_dub = new ol.Map({
         target:'map_dub',
         layers: [new ol.layer.Group({
@@ -122,6 +168,7 @@
                         url: 'http://maps.virtualkenya.org/geoserver/wms',
                         params: {'LAYERS': 'geonode:ndvianom_2011_apr_dek1'},
                         serverType: 'geoserver' })
+                    
                      }),
                 new ol.layer.Tile({
                             title: '- Hazard',
@@ -130,6 +177,7 @@
                             url: 'http://maps.virtualkenya.org/geoserver/wms',
                             params: {'LAYERS': 'geonode:spi_201103_dek1 '},
                             serverType: 'geoserver' })
+                            
                             }),
                     new ol.layer.Tile({
                             title: '- Anom',
@@ -138,6 +186,7 @@
                             url: 'http://maps.virtualkenya.org/geoserver/wms',
                             params: {'LAYERS': 'geonode:spi_201103_dek1 '},
                             serverType: 'geoserver' })
+                            
                         }),
                     new ol.layer.Tile({
                             title: '- Aver',
@@ -146,6 +195,7 @@
                             url: 'http://maps.virtualkenya.org/geoserver/wms',
                             params: {'LAYERS': 'geonode:spi_201103_dek1 '},
                             serverType: 'geoserver' })
+                            
                         }),
                     new ol.layer.Tile({
                             title: '- Ita',
@@ -154,6 +204,7 @@
                             url: 'http://maps.virtualkenya.org/geoserver/wms',
                             params: {'LAYERS': 'geonode:spi_201103_dek1 '},
                             serverType: 'geoserver' })
+                            
                         }),
                     new ol.layer.Tile({
                             title: '- Spi',
@@ -162,6 +213,7 @@
                             url: 'http://maps.virtualkenya.org/geoserver/wms',
                             params: {'LAYERS': 'geonode:spi_201103_dek1 '},
                             serverType: 'geoserver' })
+                            
                         })
                 ]
             })
@@ -262,8 +314,10 @@
 
     var layerSwitcher = new ol.control.LayerSwitcher();
     first_map.addControl(layerSwitcher);
+    //national_map.addControl(layerSwitcher);
     
 }
+
 </script>
 <style>
     .vcenter {
@@ -280,6 +334,9 @@ padding:20px;
 overflow-y:hidden;
 
 }
+.ol_legend {
+    bottom: 0px; left: 0px; position: absolute; background-color: #FFFFFF;
+    }
 </style>
 {% endblock extra_head %}
 
@@ -298,8 +355,9 @@ overflow-y:hidden;
  		<div role="tabpanel">
  			<ul class="nav nav-tabs" role="tablist">
  				<!--li role="presentation"><a href="#today" aria-controls="today" role="tab" data-toggle="tab">Today</a></li-->
+                <li role="presentation"><a href="#national" aria-controls="national" role="tab" data-toggle="tab">National</a></li>
  				<li role="presentation" class="active"><a href="#datespecific" aria-controls="datespecific" role="tab" data-toggle="tab">Turkana 2011</a></li>
- 				<li role="presentation"><a href="#animation" aria-controls="animation" role="tab" data-toggle="tab">Animation</a></li>
+ 				<li role="presentation"><a href="#animation" aria-controls="animation" role="tab" data-toggle="tab">2011 Animation</a></li>
  			</ul>
             
  			<div class="tab-content">
@@ -317,37 +375,59 @@ overflow-y:hidden;
                     </table>
                 
                 </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="national">
+        
+                        <div id="nat_map" class="col-xs-12 col-sm-6 col-lg-8 col-sm-offset-2"><h4 align="center">National</h4></div>
+                </div>
         
  				<div role="tabpanel" class="tab-pane active" id="datespecific">
-                        <table>
-                            <tr>
-                                <td class="column" id="map"><h4>Hazard<h4></td>
-                                <td class="column" id="map_2"><h4>Vulnerability<h4></td>
-                                <td class="col-sm-1" align='right'>
-                                    <form method="POST">{% csrf_token %}
-                                        <input type="hidden" name="alert_type" value="SMS">
-                                        <button type="submit" class="btn btn-md btn-block btn-default">
-                                            Send SMS
-                                        </button>
-                                    </form>
-                                    <form method="POST">{% csrf_token %}
-                                        <input type="hidden" name="alert_type" value="EMAIL">
-                                        <button type="submit" class="btn btn-md btn-block btn-default">
-                                            Send Email
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="column" id="map_3"><h4>Risk<h4></td>
-                                <td class="column" id="map_4"><h4>User<h4></td>
-                                <td><img src="http://maps.virtualkenya.org/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=geonode:dr_03_dek3&legend_options=fontName:Times%20New%20Roman;fontAntiAliasing:true;fontColor:0x000033;fontSize:14;bgColor:0xFFFFEE;dpi:180"/></td>
-                            </tr>
-                        </table>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h4>Hazard</h4>
+                            <div id="map"></div>
+                        </div>
+                        <div class="col-md-5">
+                            <h4>Vulnerability</h4>
+                            <div id="map_2"></div> 
+                            <div class="pull-right">
+                                <img src = "http://maps.virtualkenya.org/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=10&HEIGHT=10&LAYER=geonode:vulnerability_classified&legend_options=fontName:Times%20New%20Roman;fontAntiAliasing:true;fontSize:12;"/>
+                            </div>                           
+                        </div>
+                        <div class="col-md-2">
+                            <div>&nbsp;</div>
+                            <form method="POST">{% csrf_token %}
+                                <input type="hidden" name="alert_type" value="SMS">
+                                <button type="submit" class="btn btn-md btn-block btn-default">
+                                    Send SMS
+                                </button>
+                            </form>
+                            <div>&nbsp;</div>
+                            <form method="POST">{% csrf_token %}
+                                <input type="hidden" name="alert_type" value="EMAIL">
+                                <button type="submit" class="btn btn-md btn-block btn-default">
+                                    Send Email
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h4>Risk</h4>
+                            <div id="map_3"></div>
+                            <div class="pull-right">
+                                <img src="http://maps.virtualkenya.org/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=10&HEIGHT=10&LAYER=geonode:dr_03_dek3&legend_options=fontName:Times%20New%20Roman;fontAntiAliasing:true;fontColor:0x000033;fontSize:7;bgColor:0xFFFFEE;dpi:180"/>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <h4>User</h4>
+                            <div id="map_4"></div>
+                        </div>
+                    </div>
  				</div>
  				<div role="tabpanel" class="tab-pane" id="animation">
  					<img src='http://maps.virtualkenya.org/geoserver/floodmaps/wms/animate?
-service=WMS&version=1.1.0&request=GetMap&layers=floodmaps:floodmaps_2013&styles=&bbox=33.950770216537,0.055127873765,34.162714661151,0.155127873845&width=699&height=330&srs=EPSG:4326&format=image/gif;subtype=animated&format_options=gif_loop_continuously:true&time=2015-06-03,%202015-07-03,%202015-08-03,%202015-09-03'/>
+service=WMS&version=1.1.0&request=GetMap&layers=floodmaps:floodmaps_2013&styles=&bbox=33.950770216537,0.055127873765,34.162714661151,0.155127873845&width=699&height=330&srs=EPSG:4326&format=image/gif;subtype=animated&format_options=gif_loop_continuosly:true&time=2015-06-03,%202015-07-03,%202015-08-03,%202015-09-03'/>
  				</div>
  			</div> 			
  		</div>
