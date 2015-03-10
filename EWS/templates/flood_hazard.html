@@ -111,7 +111,7 @@
                     title: 'flood homes',
                     source: new ol.source.TileWMS({
                         url: 'http://maps.virtualkenya.org/geoserver/wms',
-                        params: {'LAYERS': 'geonode:flood_homes'},
+                        params: {'LAYERS': 'geonode:risk'},
                         serverType: 'geoserver' 
                             })
                      })
@@ -142,7 +142,7 @@
                     title: 'affected_constituencies',
                     source: new ol.source.TileWMS({
                         url: 'http://maps.virtualkenya.org/geoserver/wms',
-                        params: {'LAYERS': 'geonode:affected_constituencies'},
+                        params: {'LAYERS': 'geonode:flood_homes'},
                         serverType: 'geoserver' 
                             })
                      })
