@@ -251,7 +251,13 @@ overflow-y:hidden;
                     </div>
  				</div>
  				<div role="tabpanel" class="tab-pane" id="animation">
- 					<img src='http://maps.virtualkenya.org/geoserver/floodmaps/wms/animate?service=WMS&aparam=env:time&avalues=2015-06-03,2015-07-03,%202015-08-03,%202015-09-03&version=1.1.0&request=GetMap&layers=floodmaps:floodmaps_2013&styles=&bbox=33.950770216537,0.055127873765,34.162714661151,0.155127873845&width=699&height=330&srs=EPSG:4326&format=image/gif;subtype=animated&format_options=layout:floodmaps_2013_msg;gif_loop_continuosly:true&time=2015-06-03,%202015-07-03,%202015-08-03,%202015-09-03'/>
+                    <div class="col-md-5">
+ 					  <img src="http://maps.virtualkenya.org/geoserver/floodmaps/wms/animate?service=WMS&aparam=env:time&avalues=2015-06-03,2015-07-03,%202015-08-03,%202015-09-03&version=1.1.0&request=GetMap&layers=floodmaps:floodmaps_2013&styles=floodmaps_2013_style&bbox=33.950770216537,0.055127873765,34.162714661151,0.155127873845&width=699&height=330&srs=EPSG:4326&format=image/gif%3Bsubtype=animated&format_options=layout:floodmaps_2013_msg%3Bgif_loop_continuosly:true&time=2015-06-03,%202015-07-03,%202015-08-03,%202015-09-03"/>
+                        <div class="pull-right">
+                            <img src="{{ STATIC_URL }}img/floods1.gif"/>
+                        </div>
+                    </div>
+                    <
  				</div>
  			</div> 			
  		</div>
