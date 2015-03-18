@@ -1,52 +1,51 @@
-
-function secondmap() {
-        second_map = new ol.Map({
-        target:'map_2',
+function firstmap() {
+	
+	first_map = new ol.Map({
+        target:'map_1',
         layers: [new ol.layer.Group({
             title: 'Base Maps',
             layers: [
             new ol.layer.Tile({
                 title: 'Bing Maps',
-                visible: true,
+                visible: false,
                 source: new ol.source.BingMaps({
                     key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
-                    imagerySet: 'AerialWithLabels'
-                        })
+                    imagerySet: 'AerialWithLabels'})
                     }),
             new ol.layer.Tile({
-                title: 'OSM',
-                visible: false,
-                source: new ol.source.OSM()
-                    })
+            	title: 'OSM',
+            	visible: true,
+            	source: new ol.source.OSM()
+            })
                 ]
             }),
             new ol.layer.Group({
                 title: 'Overlays',
                 layers:[ new ol.layer.Tile({
-                    title: 'Drought Turkana',
+                    title: '- 3.4m depth',
                     type: 'base',
                     source: new ol.source.TileWMS({
                         url: 'http://maps.virtualkenya.org/geoserver/wms',
-                        params: {layers: 'geonode:vulnerability_classified',
-                                  format: 'image/png'},
+                        params: {layers: 'geonode:_2013_3_4mdepth',
+                    			 format: 'image/png'},
                         serverType: 'geoserver' }),
-                    showLegend: true
+                    showLegend:true
                     
                      })
                 ]
             })
-        ]
+        ],
+        view: new ol.View({
+            projection: 'EPSG:900913',
+            center:[3788403, 12762],
+            zoom:11
+            })
     });
-        
-        var layerSwitcherSecondMap = new ol.control.LayerSwitcher();
-        second_map.addControl(layerSwitcherSecondMap);
-
-        second_map.addControl(new ol3_legend({
-            map: second_map,
+	
+		first_map.addControl(new ol3_legend({
+            map: first_map,
             class: 'ol_legend' }));
 
-        second_map.bindTo('view', first_map);
-
-
-        
+        var layerSwitcher = new ol.control.LayerSwitcher();
+        first_map.addControl(layerSwitcher);
 }

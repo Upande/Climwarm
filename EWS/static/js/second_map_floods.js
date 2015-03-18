@@ -1,33 +1,35 @@
-function thirdmap() {
-
-	   third_map = new ol.Map({
-        target:'map_3',
+function secondmap() {
+	
+	    second_map = new ol.Map({
+        target:'map_2',
         layers: [new ol.layer.Group({
             title: 'Base Maps',
             layers: [
             new ol.layer.Tile({
                 title: 'Bing Maps',
-                visible: true,
+                type: 'base',
+                visible: false,
                 source: new ol.source.BingMaps({
                     key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
                     imagerySet: 'AerialWithLabels'
+                    
                         })
                     }),
             new ol.layer.Tile({
                 title: 'OSM',
-                visible: false,
+                type: 'base',
+                visible: true,
                 source: new ol.source.OSM()
-                    })
+            })
                 ]
             }),
             new ol.layer.Group({
                 title: 'Overlays',
                 layers:[ new ol.layer.Tile({
-                    title: 'Drought risk map',
-                    type: 'base',
+                    title: 'vulnerability',
                     source: new ol.source.TileWMS({
                         url: 'http://maps.virtualkenya.org/geoserver/wms',
-                        params: {layers: 'geonode:dr_03_dek3',
+                        params: {layers: 'geonode:nzoia_vulnerability',
                                   format: 'image/png'},
                         serverType: 'geoserver' 
                             }),
@@ -37,14 +39,13 @@ function thirdmap() {
             })
         ]
     });
+	    
+    var layerswitcher = new ol.control.LayerSwitcher();
+    second_map.addControl(layerswitcher);
 
-     var layerSwitcherThirdMap = new ol.control.LayerSwitcher();
-     third_map.addControl(layerSwitcherThirdMap);
-
-     third_map.addControl(new ol3_legend({
-            map: third_map,
+    second_map.addControl(new ol3_legend({
+            map: second_map,
             class: 'ol_legend' }));
 
-     third_map.bindTo('view', first_map);
-    
+    second_map.bindTo('view', first_map);
 }
