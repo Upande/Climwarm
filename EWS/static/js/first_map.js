@@ -28,8 +28,7 @@ function firstmap() {
                         url: 'http://maps.virtualkenya.org/geoserver/wms',
                         params: {layers: 'geonode:ndvianom_2011_apr_dek1',
                                     format: 'image/png'},
-                        serverType: 'geoserver' }),
-                    showLegend:true
+                        serverType: 'geoserver' })
                     
                      }),
                     new ol.layer.Tile({
@@ -39,8 +38,7 @@ function firstmap() {
                             url: 'http://maps.virtualkenya.org/geoserver/wms',
                             params: {layers: 'geonode:dek3anomaly',
                                         format: 'image/png'},
-                            serverType: 'geoserver' }),
-                            showLegend:true
+                            serverType: 'geoserver' })
                             
                         }),
                     new ol.layer.Tile({
@@ -50,8 +48,7 @@ function firstmap() {
                             url: 'http://maps.virtualkenya.org/geoserver/wms',
                             params: {layers: 'geonode:dek3aves',
                                         format: 'image/png'},
-                            serverType: 'geoserver' }),
-                            showLegend:true
+                            serverType: 'geoserver' })
                             
                         }),
                     new ol.layer.Tile({
@@ -61,8 +58,7 @@ function firstmap() {
                             url: 'http://maps.virtualkenya.org/geoserver/wms',
                             params: {layers: 'geonode:dek3lta',
                                         format: 'image/png'},
-                            serverType: 'geoserver' }),
-                            showLegend:true
+                            serverType: 'geoserver' })
                             
                         }),
                     new ol.layer.Tile({

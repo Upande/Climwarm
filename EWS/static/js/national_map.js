@@ -39,8 +39,7 @@
 					url: 'http://maps.virtualkenya.org/geoserver/wms',
 					params: {layers: 'geonode:ke_county_spi_2014_ond',
 							 format:'image/png'},
-					serverType: 'geoserver' }),
-				showLegend:true
+					serverType: 'geoserver' })
 			}),
 			new ol.layer.Tile({
 				title: '-Turkana Spi',
@@ -49,8 +48,7 @@
 					url: 'http://maps.virtualkenya.org/geoserver/wms',
 					params: {layers: 'geonode:turkana_spi_2014_ond',
 							 format:'image/png'},
-					serverType: 'geoserver' }),
-				showLegend:true
+					serverType: 'geoserver' })
 			})
 			]
 		})
@@ -64,7 +62,7 @@
 		national_map.addControl(new ol3_legend({
             map: national_map,
             class: 'ol_legend' }));
-		
+
 		var layerSwitcherNatMap = new ol.control.LayerSwitcher();
     	national_map.addControl(layerSwitcherNatMap);
     	

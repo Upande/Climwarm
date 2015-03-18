@@ -30,6 +30,10 @@ function ol3_legend(e) {
                 var legendImg = document.createElement('img');
                 legendImg.src = url + '?REQUEST=GetLegendGraphic&sld_version=1.0.0&layer=' + layersFromGroup[j].getSource().getParams().layers + '&format=' + format+ '&WIDTH=10&HEIGHT=10&legend_options=fontName:Times%20New%20Roman;fontAntiAliasing:true;fontColor:0x000033;fontSize:4;bgColor:0xFFFFEE;dpi:180'
                 legendDiv.appendChild(legendImg);
+
+
+                
+                
             }
         }
     } else {
