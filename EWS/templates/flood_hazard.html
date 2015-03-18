@@ -75,6 +75,10 @@ overflow-y:hidden;
 .ol_legend {
     bottom: 2px; left: 0px; position: absolute; background-color: #FFFFFF;
     }
+
+.ol_link {
+    bottom: 2px; left: 200px; position: absolute; background-color: rgba(126, 42, 42, 1); color:#E3E8EC !important;
+    }
 </style>
 {% endblock extra_head %}
 
@@ -103,11 +107,13 @@ overflow-y:hidden;
                     <div class="row">
                         <div class="col-md-5">
                             <h4>Severity</h4>
-                            <div id="map_1"></div>        
+                            <div id="map_1"></div> 
+                            <a class="ol_link" href="#" target="_blank">Get Metadata</a>       
                         </div>
                         <div class="col-md-5">
                             <h4>Vulnerability</h4>
-                            <div id="map_2"></div>                          
+                            <div id="map_2"></div>
+                            <a class="ol_link" href="#" target="_blank">Get Metadata</a>                          
                         </div>
                         <div class="col-md-2">
                             <div>&nbsp;</div>
@@ -133,10 +139,12 @@ overflow-y:hidden;
                         <div class="col-md-5">
                             <h4>Risk</h4>
                             <div id="map_3"></div>
+                            <a class="ol_link" href="#" target="_blank">Get Metadata</a>
                         </div>
                         <div class="col-md-5">
                             <h4>User</h4>
                             <div id="map_4"></div>
+                            <a class="ol_link" href="#" target="_blank">Get Metadata</a>
                         </div>
                     </div>
  				</div>

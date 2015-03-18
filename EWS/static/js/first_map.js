@@ -21,16 +21,16 @@ function firstmap() {
             }),
             new ol.layer.Group({
                 title: 'Overlays',
-                layers:[ new ol.layer.Tile({
-                    title: '- NDVI',
-                    type: 'base',
-                    source: new ol.source.TileWMS({
-                        url: 'http://maps.virtualkenya.org/geoserver/wms',
-                        params: {layers: 'geonode:ndvianom_2011_apr_dek1',
-                                    format: 'image/png'},
-                        serverType: 'geoserver' })
+                layers:[ //new ol.layer.Tile({
+                    //title: '- NDVI',
+                    //type: 'base',
+                    //source: new ol.source.TileWMS({
+                     //   url: 'http://maps.virtualkenya.org/geoserver/wms',
+                       // params: {layers: 'geonode:ndvianom_2011_apr_dek1',
+                         //           format: 'image/png'},
+                        //serverType: 'geoserver' })
                     
-                     }),
+                     //}),
                     new ol.layer.Tile({
                             title: '- Anom',
                             type: 'base',
