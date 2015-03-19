@@ -19,7 +19,12 @@ function fourthmap() {
                 title: 'OSM',
                 type: 'base',
                 visible: true,
-                source: new ol.source.OSM()
+                source: new ol.source.OSM({
+                    attributions: [new ol.Attribution({
+                                html:'powered by virtualkenya '+'<a href="http://maps.virtualkenya.org/maps/897">Get Metadata</a>'+ ' || '
+                              })
+                            ]
+                })
             })
                 ]
             }),

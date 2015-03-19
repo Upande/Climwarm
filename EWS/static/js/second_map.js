@@ -7,7 +7,7 @@ function secondmap() {
             layers: [
             new ol.layer.Tile({
                 title: 'Bing Maps',
-                visible: true,
+                visible: false,
                 source: new ol.source.BingMaps({
                     key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
                     imagerySet: 'AerialWithLabels'
@@ -15,8 +15,14 @@ function secondmap() {
                     }),
             new ol.layer.Tile({
                 title: 'OSM',
-                visible: false,
-                source: new ol.source.OSM()
+                visible: true,
+                source: new ol.source.OSM({
+
+                    attributions: [new ol.Attribution({
+                                html:'powered by virtualkenya '+'<a href="http://maps.virtualkenya.org/maps/891">Get Metadata</a>'+ ' || '
+                              })
+                            ]
+                })
                     })
                 ]
             }),

@@ -15,7 +15,12 @@ function firstmap() {
             new ol.layer.Tile({
             	title: 'OSM',
             	visible: true,
-            	source: new ol.source.OSM()
+            	source: new ol.source.OSM({
+                    attributions: [new ol.Attribution({
+                                html:'powered by virtualkenya '+'<a href="http://maps.virtualkenya.org/maps/894">Get Metadata</a>'+ ' || '
+                              })
+                            ]
+                })
             })
                 ]
             }),
@@ -48,4 +53,4 @@ function firstmap() {
 
         var layerSwitcher = new ol.control.LayerSwitcher();
         first_map.addControl(layerSwitcher);
-}
+   }

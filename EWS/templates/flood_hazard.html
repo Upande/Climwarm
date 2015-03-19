@@ -79,6 +79,15 @@ overflow-y:hidden;
 .ol_link {
     bottom: 2px; left: 200px; position: absolute; background-color: rgba(126, 42, 42, 1); color:#E3E8EC !important;
     }
+.ol-control button {
+  float:left !important; 
+}
+.ol-zoom .ol-zoom-in {
+    border-radius: 2px 0 0 2px !important;
+}
+.ol-zoom .ol-zoom-out {
+    border-radius: 0 2px 2px 0 !important;
+}
 </style>
 {% endblock extra_head %}
 
@@ -107,13 +116,11 @@ overflow-y:hidden;
                     <div class="row">
                         <div class="col-md-5">
                             <h4>Severity</h4>
-                            <div id="map_1"></div> 
-                            <a class="panel-footer pull-right" href="#" target="_blank">Get Metadata</a>       
+                            <div id="map_1"></div>        
                         </div>
                         <div class="col-md-5">
                             <h4>Vulnerability</h4>
-                            <div id="map_2"></div>
-                            <a class="panel-footer pull-right" href="#" target="_blank">Get Metadata</a>                          
+                            <div id="map_2"></div>                          
                         </div>
                         <div class="col-md-2">
                             <div>&nbsp;</div>
@@ -139,12 +146,10 @@ overflow-y:hidden;
                         <div class="col-md-5">
                             <h4>Risk</h4>
                             <div id="map_3"></div>
-                            <a class="panel-footer pull-right" href="#" target="_blank">Get Metadata</a>
                         </div>
                         <div class="col-md-5">
                             <h4>User</h4>
                             <div id="map_4"></div>
-                            <a class="panel-footer pull-right" href="#" target="_blank">Get Metadata</a>
                         </div>
                     </div>
  				</div>

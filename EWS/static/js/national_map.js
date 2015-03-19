@@ -8,7 +8,12 @@
 				new ol.layer.Tile({
 					title: 'OSM',
 					visible: true,
-					source: new ol.source.OSM()
+					source: new ol.source.OSM({
+						attributions: [new ol.Attribution({
+                                html:'powered by virtualkenya '+'<a href="http://maps.virtualkenya.org/maps/898">Get Metadata</a>'+ ' || '
+                              })
+                            ]
+					})
 					}),
 				new ol.layer.Tile({
 					title: 'Bing Maps',
