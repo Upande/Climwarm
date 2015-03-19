@@ -18,7 +18,7 @@ function fourthmap() {
                 visible: true,
                 source: new ol.source.OSM({
                     attributions: [new ol.Attribution({
-                                html:'powered by virtualkenya '+'<a href="http://maps.virtualkenya.org/maps/893">Get Metadata</a>'+ ' || '
+                                html:'powered by virtualkenya '+'<a href="http://maps.virtualkenya.org/maps/893" target="_blank">Get Metadata</a>'+ ' || '
                               })
                             ]
                 })

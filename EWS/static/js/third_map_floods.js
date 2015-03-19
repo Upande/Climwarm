@@ -21,7 +21,7 @@ function thirdmap() {
                 visible: true,
                 source: new ol.source.OSM({
                     attributions: [new ol.Attribution({
-                                html:'powered by virtualkenya '+'<a href="http://maps.virtualkenya.org/maps/896">Get Metadata</a>'+ ' || '
+                                html:'powered by virtualkenya '+'<a href="http://maps.virtualkenya.org/maps/896" target="_blank">Get Metadata</a>'+ ' || '
                               })
                             ]
                 })

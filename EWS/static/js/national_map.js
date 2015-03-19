@@ -10,7 +10,7 @@
 					visible: true,
 					source: new ol.source.OSM({
 						attributions: [new ol.Attribution({
-                                html:'powered by virtualkenya '+'<a href="http://maps.virtualkenya.org/maps/898">Get Metadata</a>'+ ' || '
+                                html:'powered by virtualkenya '+'<a href="http://maps.virtualkenya.org/maps/898" target="_blank">Get Metadata</a>'+ ' || '
                               })
                             ]
 					})
