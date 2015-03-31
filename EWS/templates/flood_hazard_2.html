@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% block title %}Clim-Warn Early warning platform - UNEP{% endblock title %}
+{% block extra_head %}
+<link rel="stylesheet" href="http://openlayers.org/en/v3.3.0/css/ol.css" type="text/css">
+<script src="{{ STATIC_URL }}js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js" type="text/javascript"></script>
+<script src="http://openlayers.org/en/v3.3.0/build/ol.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/ol3-layerswitcher.js"></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.3/proj4.js' type="text/javascript"></script>
+<script type = 'text/javascript'>
+function ol3_legend(e) {
+    var options = e || {};
+    var wmsVersion = options.wmsVersion || '1.1.1';
+    var format = options.format || 'image/png';
+    var legendP = document.createElement('p');
+    legendP.innerHTML = 'Legend:';
+    var legendDiv = document.createElement('div');
+    legendDiv.className = options.class + ' ol-unselectable';
+    legendDiv.appendChild(legendP);
+    var layers = options.map.getLayers().getArray();
+    for (var i = 0; i < layers.length; i++) {
+    if (layers[i] instanceof ol.layer.Group) {
+        var layersFromGroup = layers[i].getLayers().getArray();
+        for (var j=0; j < layersFromGroup.length; j++){
+            if (layersFromGroup[j].get('showLegend') === true) {
+                try {
+                    var url = layersFromGroup[j].getSource().getUrls()[0];
+                } catch (err) {
+                    var url = layersFromGroup[j].getSource().getUrl();
+                }
+                var legendImg = document.createElement('img');
+                legendImg.src = url + '?REQUEST=GetLegendGraphic&sld_version=1.0.0&layer=' + layersFromGroup[j].getSource().getParams().layers + '&format=' + format+ '&WIDTH=10&HEIGHT=10&legend_options=fontName:Times%20New%20Roman;fontAntiAliasing:true;fontColor:0x000033;fontSize:4;bgColor:0xFFFFEE;dpi:180'
+                legendDiv.appendChild(legendImg);
+            }
+        }
+    } else {
+        if (layers[i].get('showLegend') === true) {
+            try {
+                var url = layers[i].getSource().getUrls()[0];
+            } catch (err) {
+                var url = layers[i].getSource().getUrl();
+            }
+            var legendImg = document.createElement('img');
+            legendImg.src = url + '?REQUEST=GetLegendGraphic&sld_version=1.0.0&layer=' + layers[i].getSource().getParams().layers + '&format=' + format; + '&WIDTH=10&HEIGHT=10&legend_options=fontName:Times%20New%20Roman;fontAntiAliasing:true;fontColor:0x000033;fontSize:4;bgColor:0xFFFFEE;dpi:180'
+            legendDiv.appendChild(legendImg);
+        }
+    }
+}
+    ol.control.Control.call(this, {
+        element: legendDiv
+    });
+}
+
+ol.inherits(ol3_legend, ol.control.Control);
+
+proj4.defs("EPSG:900913", "+proj=somerc +lat_0=47.14439372222222 +lon_0=19.04857177777778 +k_0=0.99993 +x_0=650000 +y_0=200000 +ellps=GRS67 +towgs84=52.17,-71.82,-14.9,0,0,0,0 +units=m +no_defs");
+</script>
+
+<style>
+    .vcenter {
+        display: inline-block;
+        vertical-align: middle;
+        float: none;
+    }
+    
+.column{
+float:left;
+width:550px;
+height:300px;
+padding:20px;
+overflow-y:hidden;
+
+}
+.ol_legend {
+    bottom: 2px; left: 0px; position: absolute; background-color: #FFFFFF;
+    }
+
+.ol_link {
+    bottom: 2px; left: 200px; position: absolute; background-color: rgba(126, 42, 42, 1); color:#E3E8EC !important;
+    }
+.ol-control button {
+  float:left !important; 
+}
+.ol-zoom .ol-zoom-in {
+    border-radius: 2px 0 0 2px !important;
+}
+.ol-zoom .ol-zoom-out {
+    border-radius: 0 2px 2px 0 !important;
+}
+</style>
+{% endblock extra_head %}
+
+{% block main_content %}
+ <div class="container-fluid">
+ 	<div class="row">
+ 		<div class="col-xs-4 vcenter">
+ 			<h3>Flood Early Warning Platform</h3>
+ 		</div>
+ 		<div class="col-xs-4 vcenter">&nbsp;
+ 		</div>
+ 		<div class="col-xs-4 vcenter">
+ 		</div>
+ 	</div>
+ 	<div class="row">
+ 		<div role="tabpanel">
+ 			<ul class="nav nav-tabs" role="tablist">
+ 				<li role="presentation" class="active"><a href="#datespecific" aria-controls="datespecific" role="tab" data-toggle="tab">Nzoia 2013</a></li>
+ 				<li role="presentation"><a href="#animation" aria-controls="animation" role="tab" data-toggle="tab">2013 Animation</a></li>
+                <a class ="pull-right" href="/drought">Go to drought</a>
+ 			</ul>
+            
+ 			<div class="tab-content">
+        
+ 				<div role="tabpanel" class="tab-pane fade in active" id="datespecific">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h4>Severity</h4>
+                            <div id="map_1"></div>        
+                        </div>
+                        <div class="col-md-5">
+                            <h4>Vulnerability</h4>
+                            <div id="map_2"></div>                          
+                        </div>
+                        <div class="col-md-2">
+                            <div>&nbsp;</div>
+                            <form method="POST">{% csrf_token %}
+                                <input type="hidden" name="alert_type" value="SMS">
+                                <input type="hidden" name="hazard_type" value="Flood">
+                                <button type="submit" class="btn btn-md btn-block btn-default">
+                                    Send SMS
+                                </button>
+                            </form>
+                            <div>&nbsp;</div>
+                            <form method="POST">{% csrf_token %}
+                                <input type="hidden" name="alert_type" value="EMAIL">
+                                <input type="hidden" name="hazard_type" value="Flood">
+                                <button type="submit" class="btn btn-md btn-block btn-default">
+                                    Send Email
+                                </button>
+                            </form>
+                            <div>&nbsp;</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h4>Risk</h4>
+                            <div id="map_3"></div>
+                        </div>
+                        <div class="col-md-5">
+                            <h4>User</h4>
+                            <div id="map_4"></div>
+                        </div>
+                    </div>
+ 				</div>
+ 				<div role="tabpanel" class="tab-pane fade" id="animation">
+                    <div class="col-md-5">
+ 					  <img src="http://maps.virtualkenya.org/geoserver/floodmaps/wms/animate?service=WMS&aparam=env:time&avalues=2015-06-03,2015-07-03,%202015-08-03,%202015-09-03&version=1.1.0&request=GetMap&layers=floodmaps:floodmaps_2013&styles=floodmaps_2013_style&bbox=33.950770216537,0.055127873765,34.162714661151,0.155127873845&width=699&height=330&srs=EPSG:4326&format=image/gif%3Bsubtype=animated&format_options=layout:floodmaps_2013_msg%3Bgif_loop_continuosly:true&time=2015-06-03,%202015-07-03,%202015-08-03,%202015-09-03"/>
+                        <div class="pull-right">
+                            <img src="{{ STATIC_URL }}img/floods1.gif"/>
+                        </div>
+                    </div>
+                    <
+ 				</div>
+ 			</div> 			
+ 		</div>
+ 	</div>
+ </div>
+<script src="{{ STATIC_URL }}js/first_map_floods.js"></script>
+<script src="{{ STATIC_URL }}js/second_map_floods.js"></script>
+<script src="{{ STATIC_URL }}js/third_map_floods.js"></script>
+<script src="{{ STATIC_URL }}js/fourth_map_floods.js"></script>
+<script type='text/javascript'> 
+  firstmap()
+  secondmap()
+  thirdmap()
+  fourthmap()
+</script>
+
+{% endblock main_content %}
