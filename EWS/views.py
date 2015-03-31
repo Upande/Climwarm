@@ -5,6 +5,16 @@ from .mixins import HazardAlertMixin
 class DefaultView(TemplateView):
     template_name = 'default.html'
 
+class Home(TemplateView):
+    template_name = 'default2.html'
+
+class Ukame(TemplateView):
+    template_name = 'drought_hazard_2.html'
+
+
+class Mafuriko(TemplateView):
+    template_name = 'flood_hazard_2.html'
+
 
 class DroughtView(HazardAlertMixin, TemplateView):
     template_name = 'drought_hazard.html'
