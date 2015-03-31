@@ -124,22 +124,13 @@ overflow-y:hidden;
                         </div>
                         <div class="col-md-2">
                             <div>&nbsp;</div>
-                            <form method="POST">{% csrf_token %}
-                                <input type="hidden" name="alert_type" value="SMS">
-                                <input type="hidden" name="hazard_type" value="Flood">
-                                <button type="submit" class="btn btn-md btn-block btn-default">
-                                    Send SMS
-                                </button>
-                            </form>
+                            <button class="btn btn-md btn-block btn-default" data-toggle="modal" data-target="#alertSMS">
+                                Send SMS
+                            </button>
                             <div>&nbsp;</div>
-                            <form method="POST">{% csrf_token %}
-                                <input type="hidden" name="alert_type" value="EMAIL">
-                                <input type="hidden" name="hazard_type" value="Flood">
-                                <button type="submit" class="btn btn-md btn-block btn-default">
-                                    Send Email
-                                </button>
-                            </form>
-                            <div>&nbsp;</div>
+                            <button class="btn btn-md btn-block btn-default" data-toggle="modal" data-target="#alertEmail">
+                                Send Email
+                            </button>
                         </div>
                     </div>
                     <div class="row">
@@ -166,15 +157,75 @@ overflow-y:hidden;
  		</div>
  	</div>
  </div>
+
+<div class="modal" id="alertSMS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Enter Recipients' mobile numbers separated by commas</h4>
+            </div>
+            <form method="POST" id="send_sms_form">{% csrf_token %}
+            <div class="modal-body">
+                <input type="hidden" name="alert_type" value="SMS" />
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" name="recipients">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a href="#" id="submit_sms" class="btn btn-primary">Send message</a>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="alertEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Enter Recipients' email addresses separated by commas</h4>
+            </div>
+            <form method="POST" id="send_email_form">{% csrf_token %}
+            <div class="modal-body">
+                <input type="hidden" name="alert_type" value="EMAIL" />
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" name="recipients">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a href="#" id="submit_email" class="btn btn-primary">Send message</a>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="{{ STATIC_URL }}js/first_map_floods.js"></script>
 <script src="{{ STATIC_URL }}js/second_map_floods.js"></script>
 <script src="{{ STATIC_URL }}js/third_map_floods.js"></script>
 <script src="{{ STATIC_URL }}js/fourth_map_floods.js"></script>
 <script type='text/javascript'> 
+    $('#submit_sms').click(function(){
+        /* when the submit button in the modal is clicked, submit the form */
+        $('#send_sms_form').submit();
+    });
+    $('#submit_email').click(function(){
+        /* when the submit button in the modal is clicked, submit the form */
+        $('#send_email_form').submit();
+    });
+  
   firstmap()
   secondmap()
   thirdmap()
   fourthmap()
+
+
 </script>
 
 {% endblock main_content %}
