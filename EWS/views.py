@@ -1,4 +1,5 @@
 from django.views.generic import View, TemplateView
+from django.shortcuts import render
 
 from .mixins import HazardAlertMixin
 
@@ -7,6 +8,17 @@ class DefaultView(TemplateView):
 
 class Home(TemplateView):
     template_name = 'default2.html'
+
+class CaseStudies(TemplateView):
+    template_name = 'case_studies.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CaseStudies, self).get_context_data(**kwargs)
+        tab = kwargs['tab']
+        print 'TAB: {0}'.format(tab)
+        context.update(locals())
+        return context
+
 
 class Ukame(TemplateView):
     template_name = 'drought_hazard_2.html'
