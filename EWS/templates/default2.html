@@ -6,19 +6,22 @@
 <link href="{{ STATIC_URL }}css/justified-nav.css" rel="stylesheet">
 {% endblock extra_head %}
 
+{% block hazard_title %}
+<li>
+	<a><strong>Welcome to UNEP's CLIM-WARN Early warning Platform Prototype</strong></a>
+</li>
+{% endblock hazard_title %}
+
 {% block main_content %}
-<div class="container">
-	<div class="col-xs-9">
-			<h4 align='center'>
-				<strong>Welcome to UNEP's CLIM-WARN Early warning Platform Prototype</strong>
-			</h4>
-				<iframe width='100%' height='500' frameborder='0' src='http://markdb.cartodb.com/viz/576bde50-d7af-11e4-816c-0e4fddd5de28/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-	</div>
-	<div class="col-xs-3">
-		<div>
-			<img width='50%' height='50%' src="{{ STATIC_URL }}img/unep_logo.gif">
-		</div>
-		<p>Read more about the data and analysis methods used, as well as the platform architecture by visiting this <a href="#">link</a></p>
-	</div>
+<div class="col-xs-9">
+<iframe width='100%' height='600' frameborder='0' src='http://markdb.cartodb.com/viz/576bde50-d7af-11e4-816c-0e4fddd5de28/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 </div>
+
+<div class="col-xs-3">
+	<div>
+		<img width='50%' height='50%' src="{{ STATIC_URL }}img/unep_logo.gif">
+	</div>
+	<p>Read more about the data and analysis methods used, as well as the platform architecture by visiting this <a href="#">link</a></p>
+</div>
+
 {% endblock main_content %}
