@@ -1,13 +1,15 @@
 from django.views.generic import View, TemplateView
-from django.shortcuts import render
 
 from .mixins import HazardAlertMixin
+
 
 class DefaultView(TemplateView):
     template_name = 'default.html'
 
+
 class Home(TemplateView):
     template_name = 'default2.html'
+
 
 class CaseStudies(TemplateView):
     template_name = 'case_studies.html'
@@ -15,7 +17,6 @@ class CaseStudies(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(CaseStudies, self).get_context_data(**kwargs)
         tab = kwargs['tab']
-        print 'TAB: {0}'.format(tab)
         context.update(locals())
         return context
 
@@ -33,7 +34,6 @@ class DroughtView(HazardAlertMixin, TemplateView):
     hazard_type = 'Drought'
     sms_template = 'Alert: Drought risk for {0} (dek 3 March 2011) is worsening; a dry spell is expected with an early Alarm scenario developing in the course of wet season (March-May 2011).'
     email_template = 'Alert: Drought risk for {0} (dek 3 March 2011) is worsening; a dry spell is expected with an early Alarm scenario developing in the course of wet season (March-May 2011).'
-
 
 
 class FloodView(HazardAlertMixin, TemplateView):

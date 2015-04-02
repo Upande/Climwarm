@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
+from django.conf import settings
 
 
 from AfricasTalkingGateway import *
@@ -24,33 +25,55 @@ class HazardAlertMixin(object):
             postdata = request.POST.copy()
             alert_type = postdata['alert_type']
             recipients = postdata['recipients']
-            print 'ALERT TYPE: {0}'.format(alert_type)
-            print 'RECS: {0}'.format(recipients)
             if (alert_type == 'SMS'):
                 gateway = AfricasTalkingGateway('upande',
-                        '5da433821fa3efe8d793bfb95da80e63a4f2909c559ea58cc5a8e096fa568965')
+                                                settings.AFRICAS_TALKING_API_KEY)
                 for msisdn in recipients.split(','):
                     locale = 'Turkana'
-                    print msisdn.strip()
-                    gateway.sendMessage(msisdn.strip(), self.sms_template.format(locale))
+                    gateway.sendMessage(
+                        msisdn.strip(),
+                        self.sms_template.format(locale)
+                    )
                 gateway.sendMessage('+254722659526',
-                    self.sms_template)
+                                    self.sms_template)
             elif (alert_type == 'EMAIL'):
-                mandrill_client = mandrill.Mandrill('17dld1KJhCspkCV6zlfbtA')
+                client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
+                template_content = [
+                    {
+                        'content': 'example content',
+                        'name': 'ews_email_alert'
+                    }
+                ]
                 locale = 'TURKANA'
                 message = {
                     'from_email': 'ews@upande.com',
-                    'subject': '{0} early warning'.format(self.hazard_type),
-                    'text': self.email_template.format(locale)
+                    'global_merge_vars': [
+                        {
+                            'name': 'MESSAGE_TEXT',
+                            'content': self.email_template.format(locale)
+                        },
+                        {
+                            'name': 'HAZARD_TYPE',
+                            'content': self.hazard_type
+                        }
+                    ]
                 }
                 to_list = []
                 for recipient in recipients.split(','):
-                    print recipient.strip()
                     to_list.append(
-                        {'email': recipient.strip(), 'name': locale, 'type': 'to'}
+                        {
+                            'email': recipient.strip(),
+                            'name': locale,
+                            'type': 'to'
+                        }
                     )
                 message.update({'to': to_list})
-                result = mandrill_client.messages.send(message=message, async=False, ip_pool='Main Pool')
+                result = client.messages.send_template(
+                    template_name='ews_email_alert',
+                    template_content=template_content,
+                    message=message, async=False,
+                    ip_pool='Main Pool'
+                )
                 print result
         except Exception as ex:
             print 'exception: {0}'.format(ex.message)
