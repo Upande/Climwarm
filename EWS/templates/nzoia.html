@@ -19,37 +19,7 @@ padding:20px;
 overflow-y:hidden;
 
 }
-.ol_legend {
-    bottom: 2px; left: 0px; position: absolute; background-color: transparent;
-    }
-.ol_link {
-    bottom: 2px; left: 200px; position: absolute; background-color: rgba(126, 42, 42, 1); color:#E3E8EC !important;
-    }
-.ol-control button {
-  float:left !important; 
-}
-.ol-zoom .ol-zoom-in {
-    border-radius: 2px 0 0 2px !important;
-}
-.ol-zoom .ol-zoom-out {
-    border-radius: 0 2px 2px 0 !important;
-}
-.btn.outline {
-    background: none;
-    padding: 12px 22px;
-    color: #007299;
-}
-.btn.outline:hover, .btn.outline:focus, .btn.outline:active, .btn.outline.active, .open > .dropdown-toggle.btn-primary {
-    background-color: 000333;
-    color: #33a6cc;
-    border-color: #33a6cc;
-}
-.btn.outline:active, .btn.outline.active {
-    border-color: #007299;
-    background-color: 000333;
-    color: #007299;
-    box-shadow: none;
-}
+<style>
 </style>
 {% endblock extra_head %}
 {% block case_studies_drop_down_menu %}
@@ -74,16 +44,27 @@ overflow-y:hidden;
 
  	<div class="row">
  		<div role="tabpanel">
-            <input type="hidden" id="active_tab" value="{{ tab }}" />
  			<ul class="nav nav-tabs" id="tablist">
- 				<li role="presentation" class="active"><a href="#" aria-controls="introduction" role="tab" data-toggle="tab">Nzoia:Introduction</a></li>
-                <li role="presentation"><a href="#" aria-controls="simulation" role="tab" data-toggle="tab">Simulation</a></li>
-                <li role="presentation"><a href="#" aria-controls="data" role="tab" data-toggle="tab">Data</a></li>
+ 				<li role="presentation" class="active"><a href="#introduction" aria-controls="introduction" role="tab" data-toggle="tab"><b>Nzoia:Introduction</b></a></li>
+                <li role="presentation"><a href="#simulation" aria-controls="simulation" role="tab" data-toggle="tab"><b>Simulation</b></a></li>
+                <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><b>Data</b></a></li>
  			</ul>
             
  			<div class="tab-content">
  				<div role="tabpanel" class="tab-pane fade" id="introduction">
                         <div class="col-xs-10">
+                            <br/>
+                            <p style="bold">
+                                The Nzoia River is a 160-mile (257 km) long Kenyan river, rising from Mount Elgon. It flows south and then west, eventually flowing into Lake Victoria near the town of Port Victoria.</p>
+                            <p>
+                                The river is important to Western Kenya, flowing through a region estimated to be populated by over 3.5 million people. Its waters provide irrigation all year round, while the annual floods around the lowland area of Budalang'i deposit sediment that contributes to the area's good agricultural production.
+                            </p>
+                            <p>
+                                The river has a number of spectacular waterfalls, and is thought to possess a good hydroelectricity generation potential.
+                            </p>
+                            <br/>
+                            <img src="{{ STATIC_URL }}img/r-nzoia.jpg">
+
                         </div>
  				</div>
                 <div role="tabpanel" class="tab-pane fade" id="simulation">
@@ -92,7 +73,25 @@ overflow-y:hidden;
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="data">
-                        <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <!--Hazard-->
+                                <iframe width='100%' height='250px' frameborder='0' title src='https://markdb.cartodb.com/viz/4f7d3aa2-e43b-11e4-9361-0e4fddd5de28/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+                            </div>
+                            <div class="col-xs-6">
+                                <!--Vulnerability-->
+                                <iframe width='100%' height='250px' frameborder='0' src='https://markdb.cartodb.com/viz/35fe089a-e43b-11e4-828b-0e0c41326911/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+                            </div>
+                        </div
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <!--Risk-->
+                                <iframe width='100%' height='250px' frameborder='0' src='https://markdb.cartodb.com/viz/43788c84-e43b-11e4-a5f9-0e018d66dc29/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+                            </div>
+                            <div class="col-xs-6">
+                                <!--Impact/Response-->
+                                <iframe width='100%' height='250px' frameborder='0' src='https://markdb.cartodb.com/viz/9f5e656e-e43b-11e4-8ecf-0e9d821ea90d/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+                            </div>
                         </div>
                 </div>
               
@@ -103,7 +102,7 @@ overflow-y:hidden;
 <script src="{{ STATIC_URL }}js/jquery-1.11.2.min.js" type="text/javascript"></script>
 <script src="{{ STATIC_URL }}js/bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-        
+
         $(document).ready(function () {
             $('.dropdown-toggle').dropdown();
         });
