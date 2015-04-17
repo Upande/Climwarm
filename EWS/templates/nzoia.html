@@ -4,22 +4,9 @@
 {% block extra_head %}
 
 <style>
-
-.vcenter {
-        display: inline-block;
-        vertical-align: middle;
-        float: none;
-    }
-    
-.column{
-float:left;
-width:550px;
-height:300px;
-padding:20px;
-overflow-y:hidden;
-
+p{
+    font-family: 'Lato', sans-serif;
 }
-<style>
 </style>
 {% endblock extra_head %}
 {% block case_studies_drop_down_menu %}
@@ -52,19 +39,20 @@ overflow-y:hidden;
             
  			<div class="tab-content">
  				<div role="tabpanel" class="tab-pane fade in active" id="introduction">
-                        <div class="col-xs-10">
+                        <div class="col-xs-10 col-md-offset-1">
                             <br/>
-                            <p style="bold">
-                                The Nzoia River is a 160-mile (257 km) long Kenyan river, rising from Mount Elgon. It flows south and then west, eventually flowing into Lake Victoria near the town of Port Victoria.</p>
-                            <p>
-                                The river is important to Western Kenya, flowing through a region estimated to be populated by over 3.5 million people. Its waters provide irrigation all year round, while the annual floods around the lowland area of Budalang'i deposit sediment that contributes to the area's good agricultural production.
-                            </p>
-                            <p>
-                                The river has a number of spectacular waterfalls, and is thought to possess a good hydroelectricity generation potential.
-                            </p>
-                            <br/>
-                            <img src="{{ STATIC_URL }}img/r-nzoia.jpg">
-
+                            
+                                <p class="text-left">
+                                    The Nzoia River is a 160-mile (257 km) long Kenyan river, rising from Mount Elgon. It flows south and then west, eventually flowing into Lake Victoria near the town of Port Victoria.</p>
+                                <p class="text-left">
+                                    The river is important to Western Kenya, flowing through a region estimated to be populated by over 3.5 million people. Its waters provide irrigation all year round, while the annual floods around the lowland area of Budalang'i deposit sediment that contributes to the area's good agricultural production.
+                                </p>
+                                <p class="text-left">
+                                    The river has a number of spectacular waterfalls, and is thought to possess a good hydroelectricity generation potential.
+                                </p>
+                                <br/>
+                                <img src="{{ STATIC_URL }}img/r-nzoia.jpg" class="thumbnail col-md-offset-3" align="center">
+                        
                         </div>
  				</div>
                 <div role="tabpanel" class="tab-pane fade" id="simulation">
