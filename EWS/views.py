@@ -21,7 +21,7 @@ class CaseStudies(TemplateView):
         context.update(locals())
         return context
 
-class Nzoia(TemplateView):
+class Nzoia(HazardAlertMixin, TemplateView):
     template_name = 'nzoia.html'
 
     def get_context_data(self, **kwargs):

@@ -79,6 +79,16 @@ p{
                                 <div id="chart_div" style="width: 900px; height: 300px"></div>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div>&nbsp;</div>
+                            <button class="btn btn-md btn-block btn-default" data-toggle="modal" data-target="#alertSMS">
+                                Send SMS
+                            </button>
+                            <div>&nbsp;</div>
+                            <button class="btn btn-md btn-block btn-default" data-toggle="modal" data-target="#alertEmail">
+                                Send Email
+                            </button>
+                        </div>
                     </div>
                     <div class="row"><hr /></div>
                     <div class="row">
@@ -129,12 +139,70 @@ p{
  		</div>
  	</div>
  </div>
-<script src="{{ STATIC_URL }}js/jquery-1.11.2.min.js" type="text/javascript"></script>
-<script src="{{ STATIC_URL }}js/bootstrap.min.js" type="text/javascript"></script>
+
+<div class="modal" id="alertSMS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">SMS Alert Message</h4>
+            </div>
+            <form method="POST" id="send_sms_form">{% csrf_token %}
+            <div class="modal-body">
+                <input type="hidden" name="alert_type" value="SMS" />
+                <div class="form-group">
+                    <label for="sms_alert_message" class="control-label">Message:</label>
+                    <textarea class="alert_message form-control" name="sms_alert_message" readonly="true"></textarea>
+                </div>
+                <legend>Enter recipient mobile numbers separated by commans<legend>
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" name="recipients">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--<a href="#" id="submit_sms" class="btn btn-primary">Send message</a>-->
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="alertEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Email Alert message</h4>
+            </div>
+            <form method="POST" id="send_email_form">{% csrf_token %}
+            <div class="modal-body">
+                <input type="hidden" name="alert_type" value="EMAIL" />
+                <div class="form-group">
+                    <label for="email_alert_message" class="control-label">Message:</label>
+                    <textarea class="alert_message form-control" name="email_alert_message" readonly="true"></textarea>
+                </div>
+                <legend>Enter recipient email addresses separated by commans<legend>
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" name="recipients">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--<a href="#" id="submit_email" class="btn btn-primary">Send message</a> -->
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
         $('.dropdown-toggle').dropdown();
-    });
+    });    
 </script>
 <script>
 google.load('visualization', '1', {packages: ['corechart', 'line']});
@@ -176,29 +244,34 @@ function drawChart () {
                 $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_1mdepth_1&styles=&bbox=33.948650772090865,0.0240591237401458,34.16483410559714,0.1861966238698542&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
                 $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
                 $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $(".alert_message").val("Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
                 break;
             case 1:
                 //console.log('row 1');
                 $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_1_5mdepth&styles=&bbox=33.9464889387558,0.0224377487388487,34.1669959389322,0.1878179988711513&width=512&height=383&srs=EPSG:4326&format=image%2Fgif");
                 $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
                 $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $(".alert_message").val("Flood Alert. Some flooding of lower Nzoia floodplains likely.");
                 break;
             case 2:
                 $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_2_1mdepth&styles=&bbox=33.948650772090865,0.0240591237401458,34.16483410559714,0.1861966238698542&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
                 $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
                 $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $(".alert_message").val("Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
                 //console.log('row 2');
                 break;
             case 3:
                 $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_2_6mdepth&styles=&bbox=33.948650772090865,0.0240591237401458,34.16483410559714,0.1861966238698542&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
                 $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
                 $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $(".alert_message").val("Flood Alert. Some flooding of lower Nzoia floodplains likely.");
                 //console.log('row 3');
                 break;
             case 4:
                 $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_3_4mdepth&styles=&bbox=33.942034697352234,0.0190970676861756,34.17145018033577,0.1911586799238244&width=512&height=383&srs=EPSG:4326&format=image%2Fgif");
                 $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
                 $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $(".alert_message").val("Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
                 //console.log('row 4');
                 break;
             default:

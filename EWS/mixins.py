@@ -26,6 +26,8 @@ class HazardAlertMixin(object):
             alert_type = postdata['alert_type']
             recipients = postdata['recipients']
             if (alert_type == 'SMS'):
+                if (postdata['sms_alert_message']):
+                    self.sms_template = postdata['sms_alert_message']
                 gateway = AfricasTalkingGateway('upande',
                                                 settings.AFRICAS_TALKING_API_KEY)
                 for msisdn in recipients.split(','):
@@ -38,6 +40,8 @@ class HazardAlertMixin(object):
                                     self.sms_template)
             elif (alert_type == 'EMAIL'):
                 client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
+                if (postdata['email_alert_message']):
+                    self.email_template = postdata['email_alert_message']
                 template_content = [
                     {
                         'content': 'example content',
@@ -78,4 +82,6 @@ class HazardAlertMixin(object):
         except Exception as ex:
             print 'exception: {0}'.format(ex.message)
             pass
+        if(postdata['sms_alert_message'] or postdata['email_alert_message']):
+            return redirect(reverse('nzoia'))
         return redirect(reverse('drought_home'))
