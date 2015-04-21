@@ -26,10 +26,6 @@ class Nzoia(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(Nzoia, self).get_context_data(**kwargs)
-        readings = HazardReading.objects.all()
-        print 'READINGS:'
-        print readings
-        context.update(locals())
         return context
 
 
