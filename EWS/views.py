@@ -1,6 +1,7 @@
 from django.views.generic import View, TemplateView
 
 from .mixins import HazardAlertMixin
+from .models import *
 
 
 class DefaultView(TemplateView):
@@ -20,6 +21,19 @@ class CaseStudies(TemplateView):
         context.update(locals())
         return context
 
+class Nzoia(HazardAlertMixin, TemplateView):
+    template_name = 'nzoia.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Nzoia, self).get_context_data(**kwargs)
+        return context
+
+
+class Kwale(TemplateView):
+    template_name = 'kwale.html'
+
+class Turkana(TemplateView):
+    template_name = 'turkana.html'
 
 class Ukame(TemplateView):
     template_name = 'drought_hazard_2.html'

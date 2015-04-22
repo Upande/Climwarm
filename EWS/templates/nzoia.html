@@ -1,0 +1,287 @@
+{% extends 'base.html' %}
+
+{% block title %}Clim-Warn Early warning platform - UNEP{% endblock title %}
+{% block extra_head %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="{{ STATIC_URL }}js/react.js"></script>
+<script src="{{ STATIC_URL }}js/react-chartjs.min.js"></script>
+<script src="{{ STATIC_URL }}js/JSXTransformer.js"></script>
+
+<style>
+p{
+    font-family: 'Lato', sans-serif;
+}
+</style>
+{% endblock extra_head %}
+{% block case_studies_drop_down_menu %}
+<li class="dropdown">
+    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Case Studies<b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        <li><a href="{% url 'kwale' %}">Kwale 2008</a></li>
+        <li><a href="{% url 'nzoia' %}">Nzoia 2013</a></li>
+        <li><a href="{% url 'turkana' %}">Turkana 2011</a></li>
+    </ul>
+</li>
+{% endblock case_studies_drop_down_menu %}
+
+{% block hazard_title %}
+<li>
+
+    <a><strong>CLIM-WARN Early Warning Prototype</strong></a>
+</li>
+{% endblock hazard_title %}
+
+{% block main_content %}
+
+ 	<div class="row">
+ 		<div role="tabpanel">
+ 			<ul class="nav nav-tabs" id="tablist">
+ 				<li role="presentation" class="active"><a href="#introduction" aria-controls="introduction" role="tab" data-toggle="tab"><b>Nzoia: Introduction</b></a></li>
+                <li role="presentation"><a href="#simulation" aria-controls="simulation" role="tab" data-toggle="tab"><b>Simulation</b></a></li>
+                <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><b>Data</b></a></li>
+ 			</ul>
+            
+ 			<div class="tab-content">
+ 				<div role="tabpanel" class="tab-pane fade in active" id="introduction">
+                    <div class="col-xs-10 col-md-offset-1">
+                        <br/>
+                        <p class="text-left">
+                            The Nzoia River is a 160-mile (257 km) long Kenyan river, rising from Mount Elgon. It flows south and then west, eventually flowing into Lake Victoria near the town of Port Victoria.</p>
+                        <p class="text-left">
+                            The river is important to Western Kenya, flowing through a region estimated to be populated by over 3.5 million people. Its waters provide irrigation all year round, while the annual floods around the lowland area of Budalang'i deposit sediment that contributes to the area's good agricultural production.
+                        </p>
+                        <p class="text-left">
+                            The river has a number of spectacular waterfalls, and is thought to possess a good hydroelectricity generation potential.
+                        </p>
+                        <p class="text-left">
+                            The area however is prone to flooding especially at this period of long rains April to the end of May. There is catastrophic loss of livestock, houses, land and also human lives increasing poverty levels. The data <a href="#simulation">simulation</a> presented is for the year 2013.
+                        </p>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-2" align="center">
+                                <img src="{{ STATIC_URL }}img/r-nzoia.jpg" class="thumbnail" align="center">
+                            </div>
+                            <div class="col-md-2">
+                                <a href="http://maps.virtualkenya.org/documents/969">SPI Metadata</a>
+                                <br/>
+                                <a href="http://maps.virtualkenya.org/documents/970">Messages & Triggers</a>
+                                <br/>
+                                <a href="http://maps.virtualkenya.org/documents/971">Vulnerablity Metadata</a>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+ 				</div>
+                <div role="tabpanel" class="tab-pane fade" id="simulation">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-8">
+                            <div id="content">
+                                <div id="chart_div" style="height: 300px"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div>&nbsp;</div>
+                            <button class="btn btn-md btn-block btn-default" data-toggle="modal" data-target="#alertSMS">
+                                Send SMS
+                            </button>
+                            <div>&nbsp;</div>
+                            <button class="btn btn-md btn-block btn-default" data-toggle="modal" data-target="#alertEmail">
+                                Send Email
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row"><hr /></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="text-center">Hazard</h4>
+                            <div>
+                                <img id="simulation_hazard" style="max-width: 100%;" src="http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_2013_3_4mdepth&styles=&bbox=33.9464889387558,0.022437748738848712,34.1669959389322,0.18781799887115133&width=512&height=383&srs=EPSG:4326&format=image%2Fgif">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="text-center">Vulnerability</h4>
+                            <div>
+                                <img id="simulation_vulnerability" style="max-width: 100%;" src="http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="text-center">Risk</h4>
+                            <div>
+                                <img style="max-width: 100%;" id="simulation_risk" src="http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="data">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <!--Hazard-->
+                                <iframe width='100%' height='250px' frameborder='0' title src='https://markdb.cartodb.com/viz/4f7d3aa2-e43b-11e4-9361-0e4fddd5de28/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+                            </div>
+                            <div class="col-xs-6">
+                                <!--Vulnerability-->
+                                <iframe width='100%' height='250px' frameborder='0' src='https://markdb.cartodb.com/viz/35fe089a-e43b-11e4-828b-0e0c41326911/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+                            </div>
+                        </div
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <!--Risk-->
+                                <iframe width='100%' height='250px' frameborder='0' src='https://markdb.cartodb.com/viz/43788c84-e43b-11e4-a5f9-0e018d66dc29/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+                            </div>
+                            <div class="col-xs-6">
+                                <!--Impact/Response-->
+                                <iframe width='100%' height='250px' frameborder='0' src='https://markdb.cartodb.com/viz/9f5e656e-e43b-11e4-8ecf-0e9d821ea90d/embed_map' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+                            </div>
+                        </div>
+                </div>
+              
+ 			</div> 			
+ 		</div>
+ 	</div>
+ </div>
+
+<div class="modal" id="alertSMS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">SMS Alert Message</h4>
+            </div>
+            <form method="POST" id="send_sms_form">{% csrf_token %}
+            <div class="modal-body">
+                <input type="hidden" name="alert_type" value="SMS" />
+                <div class="form-group">
+                    <label for="sms_alert_message" class="control-label">Message:</label>
+                    <textarea class="alert_message form-control" name="sms_alert_message" readonly="true"></textarea>
+                </div>
+                <legend>Enter recipient mobile numbers separated by commans<legend>
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" name="recipients">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--<a href="#" id="submit_sms" class="btn btn-primary">Send message</a>-->
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="alertEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Email Alert message</h4>
+            </div>
+            <form method="POST" id="send_email_form">{% csrf_token %}
+            <div class="modal-body">
+                <input type="hidden" name="alert_type" value="EMAIL" />
+                <div class="form-group">
+                    <label for="email_alert_message" class="control-label">Message:</label>
+                    <textarea class="alert_message form-control" name="email_alert_message" readonly="true"></textarea>
+                </div>
+                <legend>Enter recipient email addresses separated by commans<legend>
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" name="recipients">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--<a href="#" id="submit_email" class="btn btn-primary">Send message</a> -->
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });    
+</script>
+<script>
+google.load('visualization', '1', {packages: ['corechart', 'line']});
+google.setOnLoadCallback(drawChart);
+
+
+
+function drawChart () {
+
+    var data = google.visualization.arrayToDataTable([
+        ['Date', 'Flood Height'],
+        ['2013-01-08', 2.10],
+        ['2013-03-01', 1.00],
+        ['2013-04-15', 2.60],
+        ['2013-04-30', 1.50],
+        ['2013-09-11', 3.40]
+    ]);
+    var options = {
+        title: 'Click on reading to generate alerts',
+        hAxis: {
+            title: 'Date'
+        },
+        vAxis: {
+            title: 'Height'
+        },
+        backgroundColor: '#FFFFFF',
+        pointSize: 10
+    };
+
+    var my_chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    my_chart.draw(data, options);
+    google.visualization.events.addListener(my_chart, 'select', function() {
+        var selection = my_chart.getSelection();
+        var row = parseInt(selection[0].row);
+        console.log('SELECTION ROW: ' + row );
+        //console.log(data);
+        switch(row){
+            case 0:
+                //console.log('row 0');
+                $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_1mdepth_1&styles=&bbox=33.948650772090865,0.0240591237401458,34.16483410559714,0.1861966238698542&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
+                break;
+            case 1:
+                //console.log('row 1');
+                $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_1_5mdepth&styles=&bbox=33.9464889387558,0.0224377487388487,34.1669959389322,0.1878179988711513&width=512&height=383&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $(".alert_message").val("F2 Flood Alert. Some flooding of lower Nzoia floodplains likely.");
+                break;
+            case 2:
+                $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_2_1mdepth&styles=&bbox=33.948650772090865,0.0240591237401458,34.16483410559714,0.1861966238698542&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
+                //console.log('row 2');
+                break;
+            case 3:
+                $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_2_6mdepth&styles=&bbox=33.948650772090865,0.0240591237401458,34.16483410559714,0.1861966238698542&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $(".alert_message").val("F2 Flood Alert. Some flooding of lower Nzoia floodplains likely.");
+                //console.log('row 3');
+                break;
+            case 4:
+                $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_3_4mdepth&styles=&bbox=33.942034697352234,0.0190970676861756,34.17145018033577,0.1911586799238244&width=512&height=383&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
+                //console.log('row 4');
+                break;
+            default:
+                console.log('DEFAULT');
+
+        }
+    });
+}
+</script>
+
+{% endblock main_content %}
