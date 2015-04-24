@@ -108,19 +108,19 @@ p{
                         <div class="col-md-4">
                             <h4 class="text-center">Hazard</h4>
                             <div>
-                                <img id="simulation_hazard" style="max-width: 100%;" src="http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_2013_3_4mdepth&styles=&bbox=33.9464889387558,0.022437748738848712,34.1669959389322,0.18781799887115133&width=512&height=383&srs=EPSG:4326&format=image%2Fgif">
+                                <img id="simulation_hazard" style="max-width: 100%;" src="https://s3-eu-west-1.amazonaws.com/upande/2_1mdepth.GIF">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <h4 class="text-center">Vulnerability</h4>
                             <div>
-                                <img id="simulation_vulnerability" style="max-width: 100%;" src="http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif">
+                                <img id="simulation_vulnerability" style="max-width: 100%;" src="https://s3-eu-west-1.amazonaws.com/upande/Nzoia_Vulnerability.GIF">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <h4 class="text-center">Risk</h4>
                             <div>
-                                <img style="max-width: 100%;" id="simulation_risk" src="http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif">
+                                <img style="max-width: 100%;" id="simulation_risk" src="https://s3-eu-west-1.amazonaws.com/upande/Nzoia_Risk.GIF">
                             </div>
                         </div>
                     </div>
@@ -255,36 +255,31 @@ function drawChart () {
         switch(row){
             case 0:
                 //console.log('row 0');
-                $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_1mdepth_1&styles=&bbox=33.948650772090865,0.0240591237401458,34.16483410559714,0.1861966238698542&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
-                $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
-                $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/2_1mdepth.GIF");
+
                 $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
                 break;
             case 1:
                 //console.log('row 1');
-                $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_1_5mdepth&styles=&bbox=33.9464889387558,0.0224377487388487,34.1669959389322,0.1878179988711513&width=512&height=383&srs=EPSG:4326&format=image%2Fgif");
-                $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
-                $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/1_0mdepth.GIF");
+
                 $(".alert_message").val("F2 Flood Alert. Some flooding of lower Nzoia floodplains likely.");
                 break;
             case 2:
-                $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_2_1mdepth&styles=&bbox=33.948650772090865,0.0240591237401458,34.16483410559714,0.1861966238698542&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
-                $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
-                $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/2_6mdepth.GIF");
+
                 $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
                 //console.log('row 2');
                 break;
             case 3:
-                $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_2_6mdepth&styles=&bbox=33.948650772090865,0.0240591237401458,34.16483410559714,0.1861966238698542&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
-                $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
-                $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/1_5mdepth.GIF");
+
                 $(".alert_message").val("F2 Flood Alert. Some flooding of lower Nzoia floodplains likely.");
                 //console.log('row 3');
                 break;
             case 4:
-                $('#simulation_hazard').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:_3_4mdepth&styles=&bbox=33.942034697352234,0.0190970676861756,34.17145018033577,0.1911586799238244&width=512&height=383&srs=EPSG:4326&format=image%2Fgif");
-                $('#simulation_vulnerability').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:nzoia_vulnerability&styles=&bbox=33.8495718598182,-0.03422599985613107,34.279603859818195,0.2882980001438689&width=512&height=384&srs=EPSG:4326&format=image%2Fgif");
-                $('#simulation_risk').attr("src", "http://maps.virtualkenya.org/geoserver/geonode/wms?service=WMS&version=1.1.0&request=GetMap&layers=geonode:risk&styles=&bbox=33.951047994315,0.055405651567,34.162665772211,0.154850096067&width=702&height=330&srs=EPSG:4326&format=image%2Fgif");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/3_4mdepth.GIF");
+
                 $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
                 //console.log('row 4');
                 break;
