@@ -23,6 +23,7 @@ class CaseStudies(TemplateView):
 
 class Nzoia(HazardAlertMixin, TemplateView):
     template_name = 'nzoia.html'
+    hazard_type = 'Flood'
 
     def get_context_data(self, **kwargs):
         context = super(Nzoia, self).get_context_data(**kwargs)
