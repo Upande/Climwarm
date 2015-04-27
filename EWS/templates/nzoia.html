@@ -163,6 +163,7 @@ p{
             <form method="POST" id="send_sms_form">{% csrf_token %}
             <div class="modal-body">
                 <input type="hidden" name="alert_type" value="SMS" />
+                <input type="hidden" name="return_url" value="nzoia" />
                 <div class="form-group">
                     <label for="sms_alert_message" class="control-label">Message:</label>
                     <textarea class="alert_message form-control" name="sms_alert_message" readonly="true"></textarea>
@@ -193,6 +194,7 @@ p{
             <form method="POST" id="send_email_form">{% csrf_token %}
             <div class="modal-body">
                 <input type="hidden" name="alert_type" value="EMAIL" />
+                <input type="hidden" name="return_url" value="nzoia" />
                 <div class="form-group">
                     <label for="email_alert_message" class="control-label">Message:</label>
                     <textarea class="alert_message form-control" name="email_alert_message" readonly="true"></textarea>

@@ -33,7 +33,7 @@ class Nzoia(HazardAlertMixin, TemplateView):
 class Kwale(TemplateView):
     template_name = 'kwale.html'
 
-class Turkana(TemplateView):
+class Turkana(HazardAlertMixin, TemplateView):
     template_name = 'turkana.html'
 
 class Ukame(TemplateView):

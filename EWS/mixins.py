@@ -29,7 +29,7 @@ class HazardAlertMixin(object):
             if (alert_type == 'SMS'):
                 if (postdata['sms_alert_message']):
                     self.sms_template = postdata['sms_alert_message']
-                    case_study = 'nzoia'
+                    case_study = postdata['return_url']
                 gateway = AfricasTalkingGateway('upande',
                                                 settings.AFRICAS_TALKING_API_KEY)
                 for msisdn in recipients.split(','):
@@ -44,7 +44,7 @@ class HazardAlertMixin(object):
                 client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
                 if (postdata['email_alert_message']):
                     self.email_template = postdata['email_alert_message']
-                    case_study = 'nzoia'
+                    case_study = postdata['return_url']
                 template_content = [
                     {
                         'content': 'example content',

@@ -3,10 +3,6 @@
 {% block title %}Clim-Warn Early warning platform - UNEP{% endblock title %}
 {% block extra_head %}
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script src="{{ STATIC_URL }}js/react.js"></script>
-<script src="{{ STATIC_URL }}js/react-chartjs.min.js"></script>
-<script src="{{ STATIC_URL }}js/JSXTransformer.js"></script>
-
 <style>
 p{
     font-family: 'Lato', sans-serif;
@@ -85,7 +81,6 @@ p{
                         </div>
                         <div class="col-md-2">
                             <div>&nbsp;</div>
-                            <!--
                             <button class="btn btn-md btn-block btn-default" data-toggle="modal" data-target="#alertSMS">
                                 Send SMS
                             </button>
@@ -93,7 +88,6 @@ p{
                             <button class="btn btn-md btn-block btn-default" data-toggle="modal" data-target="#alertEmail">
                                 Send Email
                             </button>
-                            -->
                         </div>
                     </div>
                     <div class="row"><hr /></div>
@@ -139,6 +133,7 @@ p{
             <form method="POST" id="send_sms_form">{% csrf_token %}
             <div class="modal-body">
                 <input type="hidden" name="alert_type" value="SMS" />
+                <input type="hidden" name="return_url" value="turkana" />
                 <div class="form-group">
                     <label for="sms_alert_message" class="control-label">Message:</label>
                     <textarea class="alert_message form-control" name="sms_alert_message" readonly="true"></textarea>
@@ -169,6 +164,7 @@ p{
             <form method="POST" id="send_email_form">{% csrf_token %}
             <div class="modal-body">
                 <input type="hidden" name="alert_type" value="EMAIL" />
+                <input type="hidden" name="return_url" value="turkana" />
                 <div class="form-group">
                     <label for="email_alert_message" class="control-label">Message:</label>
                     <textarea class="alert_message form-control" name="email_alert_message" readonly="true"></textarea>
@@ -213,7 +209,7 @@ function drawChart () {
             title: 'Date'
         },
         vAxis: {
-            title: 'Reading'
+            title: 'Drought level'
         },
         backgroundColor: '#FFFFFF',
         pointSize: 10
@@ -231,17 +227,17 @@ function drawChart () {
                     case 0:
                         $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0101.GIF");
                         $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0101.GIF");
-                        $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
+                        $(".alert_message").val("Moderate drought possible in Kang'otha.");
                         break;
                     case 1:
                         $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0102.GIF");
                         $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0102.GIF");
-                        $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
+                        $(".alert_message").val("Warning: Drought conditions developing in Kang'otha.");
                         break;
                     case 2:
                         $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0103.GIF");
                         $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0103.GIF");
-                        $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
+                        $(".alert_message").val("Moderate drought possible in Kang'otha.");
                         break;
                 }
                 break;
@@ -250,17 +246,17 @@ function drawChart () {
                     case 0:
                         $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0101.GIF");
                         $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0101.GIF");
-                        $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
+                        $(".alert_message").val("Warning: Drought conditions developing in Namadak/kapua.");
                         break;
                     case 1:
                         $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0102.GIF");
                         $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0102.GIF");
-                        $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
+                        $(".alert_message").val("Warning: Drought conditions developing in Namadak/kapua.");
                         break;
                     case 2:
                         $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0103.GIF");
                         $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0103.GIF");
-                        $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
+                        $(".alert_message").val("Warning: Drought conditions developing in Namadak/kapua.");
                         break;
                 }
                 break;
@@ -269,17 +265,17 @@ function drawChart () {
                     case 0:
                         $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0101.GIF");
                         $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0101.GIF");
-                        $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
+                        $(".alert_message").val("Warning: Drought conditions developing in Napetet.");
                         break;
                     case 1:
                         $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0102.GIF");
                         $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0102.GIF");
-                        $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
+                        $(".alert_message").val("Moderate drought possible in Napetet.");
                         break;
                     case 2:
                         $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0103.GIF");
                         $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0103.GIF");
-                        $(".alert_message").val("F3 Flood Warning.  Heavy flooding of lower Nzoia floodplains likely.");
+                        $(".alert_message").val("Warning: Drought conditions developing in Napetet.");
                         break;
                 }
                 break;
