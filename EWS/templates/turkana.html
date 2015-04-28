@@ -1,0 +1,420 @@
+{% extends 'base.html' %}
+
+{% block title %}Clim-Warn Early warning platform - UNEP{% endblock title %}
+{% block extra_head %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<style>
+p{
+    font-family: 'Lato', sans-serif;
+}
+
+/* bootstrap hack: fix content width inside hidden tabs */
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+    display: block;     /* undo display:none          */
+    height: 0;          /* height:0 is also invisible */ 
+    overflow-y: hidden; /* no-overflow                */
+}
+.tab-content > .active,
+.pill-content > .active {
+    height: auto;       /* let the content decide it  */
+} /* bootstrap hack end */
+</style>
+{% endblock extra_head %}
+{% block case_studies_drop_down_menu %}
+<li class="dropdown">
+    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Case Studies<b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        <li><a href="{% url 'kwale' %}">Kwale 2008</a></li>
+        <li><a href="{% url 'nzoia' %}">Nzoia 2013</a></li>
+        <li><a href="{% url 'turkana' %}">Turkana 2011</a></li>
+    </ul>
+</li>
+{% endblock case_studies_drop_down_menu %}
+
+{% block hazard_title %}
+<li>
+
+    <a><strong>CLIM-WARN Early Warning Prototype</strong></a>
+</li>
+{% endblock hazard_title %}
+
+{% block main_content %}
+
+    <div class="row">
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" id="tablist">
+                <li role="presentation" class="active"><a href="#introduction" aria-controls="introduction" role="tab" data-toggle="tab"><b>Turkana: Introduction</b></a></li>
+                <li role="presentation"><a href="#simulation" aria-controls="simulation" role="tab" data-toggle="tab"><b>Simulation</b></a></li>
+                <!--<li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><b>Data</b></a></li> -->
+            </ul>
+            
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="introduction">
+                    <div class="col-xs-10 col-md-offset-1">
+                        <br/>
+                        <p class="text-left">
+                            Turkana is the largest and also the north-western most county in Kenya. It is bordered by the countries of Uganda to the west; South Sudan and Ethiopia, including the disputed Ilemi Triangle, to the north and northeast; and Lake Turkana to the east. To the south and east, neighbouring counties in Kenya are West Pokot, Baringo and Samburu Counties, while Marsabit County is located on the opposite (i.e. eastern) shore of Lake Turkana.</p>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-2" align="center">
+                                <img src="{{ STATIC_URL }}images/Turkana_location_map.png" class="thumbnail" align="center">
+                            </div>
+                            <div class="col-md-2">
+                                <a href="http://maps.virtualkenya.org/documents/969">SPI Metadata</a>
+                                <br/>
+                                <a href="http://maps.virtualkenya.org/documents/970">Messages & Triggers</a>
+                                <br/>
+                                <a href="http://maps.virtualkenya.org/documents/971">Vulnerablity Metadata</a>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="simulation">
+                    <div class="row-fluid">
+                        <div class="col-md-2">
+                            <h4 class="text-center">Wards</h4>
+                            <ul id="series" style="list-style: none; overflow:hidden; overflow-y:scroll; height:200px;">
+                                <li><input type="checkbox" name="series" value="1" />Kang'atotha</li>
+                                <li><input type="checkbox" name="series" value="2" />Namadak/kapua</li>
+                                <li><input type="checkbox" name="series" value="3" />Napetet</li>
+                                <li><input type="checkbox" name="series" value="4" />Napuu</li>
+                                <li><input type="checkbox" name="series" value="5" />Kaeris</li>
+                                <li><input type="checkbox" name="series" value="6" />Kaikor</li>
+                                <li><input type="checkbox" name="series" value="7" />Karebur</li>
+                                <li><input type="checkbox" name="series" value="8" />Kataboi</li>
+                                <li><input type="checkbox" name="series" value="9" />Kibish</li> 
+                                <li><input type="checkbox" name="series" value="10" />Kokuro</li> 
+                                <li><input type="checkbox" name="series" value="11" />Loteteleit</li>
+                                <li><input type="checkbox" name="series" value="12" />Meyan</li>
+                                <li><input type="checkbox" name="series" value="13" />Naita</li>
+                                <li><input type="checkbox" name="series" value="14" />Nanaam / Mogila</li>
+                                <li><input type="checkbox" name="series" value="15" />Songot</li>
+                                <li><input type="checkbox" name="series" value="16" />Yapakuno</li>
+                                <li><input type="checkbox" name="series" value="17" />Kalapata</li>
+                                <li><input type="checkbox" name="series" value="18" />Kapedo</li>
+                                <li><input type="checkbox" name="series" value="19" />Kaputir</li>
+                                <li><input type="checkbox" name="series" value="20" />Katilia</li>
+                                <li><input type="checkbox" name="series" value="21" />Katilu</li>
+                                <li><input type="checkbox" name="series" value="22" />Kochodin</li>
+                                <li><input type="checkbox" name="series" value="23" />Lobokat</li>
+                                <li><input type="checkbox" name="series" value="24" />Lokichar</li>
+                                <li><input type="checkbox" name="series" value="25" />Lokori</li>
+                                <li><input type="checkbox" name="series" value="26" />Napeitom</li>
+                                <li><input type="checkbox" name="series" value="27" />Kalokol</li>
+                                <li><input type="checkbox" name="series" value="28" />Kanamkemer</li>
+                                <li><input type="checkbox" name="series" value="29" />Kangirisae</li>
+                                <li><input type="checkbox" name="series" value="30" />Kenyatta</li>
+                                <li><input type="checkbox" name="series" value="31" />Kerio</li>
+                                <li><input type="checkbox" name="series" value="32" />Kotaruk</li>
+                                <li><input type="checkbox" name="series" value="33" />Lobei</li>
+                                <li><input type="checkbox" name="series" value="34" />Loima</li>
+                                <li><input type="checkbox" name="series" value="35" />Lokiriama</li>
+                                <li><input type="checkbox" name="series" value="36" />Lomeyan</li>
+                                <li><input type="checkbox" name="series" value="37" />Lorengippi</li>
+                                <li><input type="checkbox" name="series" value="38" />Lorugum</li>
+                            </ul>                            
+                        </div>
+                        <div class="col-md-9">
+                            <div id="content">
+                                <div id="chart_div" style="height: 200px"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div>&nbsp;</div>
+                            <button class="btn btn-md btn-block btn-default" data-toggle="modal" data-target="#alertSMS">
+                                Send SMS
+                            </button>
+                            <div>&nbsp;</div>
+                            <button class="btn btn-md btn-block btn-default" data-toggle="modal" data-target="#alertEmail">
+                                Send Email
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row"><hr /></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="text-center">Hazard</h4>
+                            <div>
+                                <img id="simulation_hazard" style="max-width: 100%;" src="https://s3-eu-west-1.amazonaws.com/upande/spi_0101.GIF">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h4 class="text-center">Risk</h4>
+                            <div>
+                                <img style="max-width: 100%;" id="simulation_risk" src="https://s3-eu-west-1.amazonaws.com/upande/0101.GIF">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="text-center">Vulnerability</h4>
+                            <div>
+                                <img id="simulation_vulnerability" style="max-width: 100%;" src="https://s3-eu-west-1.amazonaws.com/upande/Turkana_Vulnerability.GIF">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="data">
+
+                </div>
+              
+            </div>          
+        </div>
+    </div>
+ </div>
+
+<div class="modal" id="alertSMS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">SMS Alert Message</h4>
+            </div>
+            <form method="POST" id="send_sms_form">{% csrf_token %}
+            <div class="modal-body">
+                <input type="hidden" name="alert_type" value="SMS" />
+                <input type="hidden" name="return_url" value="turkana" />
+                <div class="form-group">
+                    <label for="sms_alert_message" class="control-label">Message:</label>
+                    <textarea class="alert_message form-control" name="sms_alert_message" readonly="true"></textarea>
+                </div>
+                <legend>Enter recipient mobile numbers separated by commans<legend>
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" name="recipients">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--<a href="#" id="submit_sms" class="btn btn-primary">Send message</a>-->
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="alertEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Email Alert message</h4>
+            </div>
+            <form method="POST" id="send_email_form">{% csrf_token %}
+            <div class="modal-body">
+                <input type="hidden" name="alert_type" value="EMAIL" />
+                <input type="hidden" name="return_url" value="turkana" />
+                <div class="form-group">
+                    <label for="email_alert_message" class="control-label">Message:</label>
+                    <textarea class="alert_message form-control" name="email_alert_message" readonly="true"></textarea>
+                </div>
+                <legend>Enter recipient email addresses separated by commans<legend>
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" name="recipients">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--<a href="#" id="submit_email" class="btn btn-primary">Send message</a> -->
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });    
+</script>
+<script>
+google.load('visualization', '1', {packages: ['corechart', 'line']});
+google.setOnLoadCallback(drawChart);
+
+
+
+function drawChart () {
+
+    var data = google.visualization.arrayToDataTable([
+        ['Date', 
+        'Kangatotha', 
+        'Namadak/kapua', 
+        'Napetet', 
+        'Napuu', 
+        'Kaeris', 
+        'Kaikor', 
+        'Karebur', 
+        'Kataboi', 
+        'Kibish', 
+        'Kokuro', 
+        'Loteteleit',
+        'Meyan',
+        'Naita',
+        'Nanaam / Mogila',
+        'Songot',
+        'Yapakuno',
+        'Kalapata',
+        'Kapedo',
+        'Kaputir',
+        'Katilia',
+        'Katilu',
+        'Kochodin',
+        'Lobokat',
+        'Lokichar',
+        'Lokori',
+        'Napeitom',
+        'Kalokol',
+        'Kanamkemer',
+        'Kangirisae',
+        'Kenyatta',
+        'Kerio',
+        'Kotaruk',
+        'Lobei',
+        'Loima',
+        'Lokiriama',
+        'Lomeyan',
+        'Lorengippi',
+        'Lorugum'],
+['2011-01-01',2, 1, 1, 1, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1],
+['2011-01-20',1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-01-30',2, 1, 1, 1, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 3, 1, 1, 1, 1, 1, 1, 1],
+['2011-02-01',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-02-20',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-02-30',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-03-01',1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 1, 1, 1, 2, 1, 2, 2, 2, 1, 2, 1, 2, 1, 1, 2, 2, 2, 2, 1, 2],
+['2011-03-20',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-03-30',1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 2, 1, 2, 2, 2, 1, 2, 1, 2, 1, 2, 2, 1, 1, 2, 1, 2],
+['2011-04-01',2, 2, 2, 2, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2],
+['2011-04-20',2, 2, 3, 2, 3, 1, 1, 2, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 1, 2],
+['2011-04-30',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-05-01',1, 2, 1, 1, 3, 2, 2, 2, 1, 2, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-05-20',1, 2, 1, 1, 2, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 1, 1],
+['2011-05-30',1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1],
+['2011-06-01',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2],
+['2011-06-20',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-06-30',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-07-01',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-07-20',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-07-30',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-08-01',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-08-20',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-08-30',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-09-01',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-09-20',1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-09-30',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-10-01',1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-10-20',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-10-30',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-11-01',1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1],
+['2011-11-20',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-11-20-11-30',1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-12-01',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-12-20',1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+['2011-12-30',2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 1, 2, 2, 2, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 1],
+    ]);
+    var options = {
+        title: 'Click on reading to generate alerts',
+        hAxis: {
+            title: 'Date'
+        },
+        vAxis: {
+            title: 'Drought level'
+        },
+        backgroundColor: '#FFFFFF',
+        pointSize: 10
+    };
+    var view = new google.visualization.DataView(data);
+
+
+    //var my_chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    //my_chart.draw(data, options);
+    var my_chart = new google.visualization.LineChart($('#chart_div')[0]);
+    /*
+    my_chart.draw(view, {
+       strictFirstColumnType: true
+    });
+    */  
+
+    google.visualization.events.addListener(my_chart, 'select', function() {
+        var selection = my_chart.getSelection();
+        var row = parseInt(selection[0].row);
+        var col = parseInt(selection[0].column);
+        switch(col) {
+            case 1:
+                switch(row) {
+                    case 0:
+                        $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0101.GIF");
+                        $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0101.GIF");
+                        $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                        break;
+                    case 1:
+                        $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0102.GIF");
+                        $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0102.GIF");
+                        $(".alert_message").val("Warning: Drought conditions developing in Kang'otha.");
+                        break;
+                    case 2:
+                        $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0103.GIF");
+                        $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0103.GIF");
+                        $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                        break;
+                }
+                break;
+            case 2:
+                switch(row) {
+                    case 0:
+                        $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0101.GIF");
+                        $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0101.GIF");
+                        $(".alert_message").val("Warning: Drought conditions developing in Namadak/kapua.");
+                        break;
+                    case 1:
+                        $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0102.GIF");
+                        $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0102.GIF");
+                        $(".alert_message").val("Warning: Drought conditions developing in Namadak/kapua.");
+                        break;
+                    case 2:
+                        $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0103.GIF");
+                        $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0103.GIF");
+                        $(".alert_message").val("Warning: Drought conditions developing in Namadak/kapua.");
+                        break;
+                }
+                break;
+            case 3:
+                switch(row) {
+                    case 0:
+                        $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0101.GIF");
+                        $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0101.GIF");
+                        $(".alert_message").val("Warning: Drought conditions developing in Napetet.");
+                        break;
+                    case 1:
+                        $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0102.GIF");
+                        $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0102.GIF");
+                        $(".alert_message").val("Moderate drought possible in Napetet.");
+                        break;
+                    case 2:
+                        $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/spi_0103.GIF");
+                        $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/upande/0103.GIF");
+                        $(".alert_message").val("Warning: Drought conditions developing in Napetet.");
+                        break;
+                }
+                break;
+        }
+    });
+
+    $('#series').find(':checkbox').change(function () {
+        var cols = [0];
+        $('#series').find(':checkbox:checked').each(function () {
+            console.log($(this).attr('value'));
+            cols.push(parseInt($(this).attr('value')));
+        });
+        view.setColumns(cols);
+        my_chart.draw(view, options);
+    });
+
+}
+</script>
+
+{% endblock main_content %}
