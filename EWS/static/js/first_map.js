@@ -1,4 +1,11 @@
 function firstmap() {
+
+        var attribution = new ol.control.Attribution({
+          collapsible: true,
+          label: 'M',
+          collapsed: true,
+          tipLabel: 'Metadata'
+        });
     
         first_map = new ol.Map({
         target:'map_1',
@@ -8,22 +15,16 @@ function firstmap() {
             new ol.layer.Tile({
                 title: 'OSM',
                 visible: true,
-                source: new ol.source.OSM({
-                       attributions: [new ol.Attribution({
-                                html:'powered by virtualkenya '+'<a href="http://maps.virtualkenya.org/maps/892" target="_blank">Get Metadata</a>'+ ' || '
-                              })
-                            ]
-                        })
-                    }),
+                source: new ol.source.OSM() 
+            }),
+
             new ol.layer.Tile({
                 title: 'Bing Maps',
                 visible: false,
-                source: new ol.source.BingMaps({
-                    key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
-                    imagerySet: 'AerialWithLabels'
-                    })
-                            
-            })
+                source: new ol.source.MapQuest({
+                    layer: 'sat'
+                    })               
+                })
                 ]
             }),
             new ol.layer.Group({
@@ -82,13 +83,13 @@ function firstmap() {
                 ]
             })
         ],
+        controls: ol.control.defaults({ attribution: false}).extend([attribution]),
         view: new ol.View({
             projection: 'EPSG:900913',
             center:[3930427, 359171],
             zoom:6
-            })
+        })
     });
-
         
         var layerSwitcherFirstMap = new ol.control.LayerSwitcher();
         first_map.addControl(layerSwitcherFirstMap);
@@ -96,6 +97,5 @@ function firstmap() {
         first_map.addControl(new ol3_legend({
             map: first_map,
             class: 'ol_legend' }));
-        
 
 }

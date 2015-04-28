@@ -52,11 +52,21 @@ overflow-y:hidden;
 }
 </style>
 {% endblock extra_head %}
+{% block case_studies_drop_down_menu %}
+<li class="dropdown">
+    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Case Studies<b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        <li><a href="#">Kwale 2008</a></li>
+        <li><a href="#">Nzoia 2013</a></li>
+        <li><a href="#">Turkana 2011</a></li>
+    </ul>
+</li>
+{% endblock case_studies_drop_down_menu %}
 
 {% block hazard_title %}
 <li>
 
-    <a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLIM-WARN Early Warning Prototype</strong></a>
+    <a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLIM-WARN Early Warning Prototype</strong></a>
 </li>
 {% endblock hazard_title %}
 
