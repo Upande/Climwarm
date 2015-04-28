@@ -21,22 +21,19 @@ class CaseStudies(TemplateView):
         context.update(locals())
         return context
 
-class Nzoia(TemplateView):
+class Nzoia(HazardAlertMixin, TemplateView):
     template_name = 'nzoia.html'
+    hazard_type = 'Flood'
 
     def get_context_data(self, **kwargs):
         context = super(Nzoia, self).get_context_data(**kwargs)
-        readings = HazardReading.objects.all()
-        print 'READINGS:'
-        print readings
-        context.update(locals())
         return context
 
 
 class Kwale(TemplateView):
     template_name = 'kwale.html'
 
-class Turkana(TemplateView):
+class Turkana(HazardAlertMixin, TemplateView):
     template_name = 'turkana.html'
 
 class Ukame(TemplateView):
