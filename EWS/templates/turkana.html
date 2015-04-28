@@ -322,10 +322,14 @@ function drawChart () {
             title: 'Date'
         },
         vAxis: {
-            title: 'Drought level'
+            title: 'Drought level',
+            viewWindow: {
+                max: 3.0,
+                min: 1.0
+            }
         },
         backgroundColor: '#FFFFFF',
-        pointSize: 10
+        pointSize: 5
     };
     var view = new google.visualization.DataView(data);
 
@@ -342,6 +346,8 @@ function drawChart () {
         var selection = my_chart.getSelection();
         var row = parseInt(selection[0].row);
         var col = parseInt(selection[0].column);
+        console.log('ROW: '+row);
+        console.log('COL: '+col);
         switch(col) {
             case 1:
                 switch(row) {
@@ -406,7 +412,7 @@ function drawChart () {
     $('#series').find(':checkbox').change(function () {
         var cols = [0];
         $('#series').find(':checkbox:checked').each(function () {
-            console.log($(this).attr('value'));
+            //console.log($(this).attr('value'));
             cols.push(parseInt($(this).attr('value')));
         });
         view.setColumns(cols);
