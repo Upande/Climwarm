@@ -333,11 +333,10 @@ function drawChart () {
     //var my_chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     //my_chart.draw(data, options);
     var my_chart = new google.visualization.LineChart($('#chart_div')[0]);
-    /*
+    view.setColumns([0,1,2]);
     my_chart.draw(view, {
        strictFirstColumnType: true
     });
-    */  
 
     google.visualization.events.addListener(my_chart, 'select', function() {
         var selection = my_chart.getSelection();
