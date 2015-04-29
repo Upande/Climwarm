@@ -139,7 +139,7 @@ body { overflow-x: hidden;}
                         <div class="col-md-4">
                             <h4 class="text-center">Hazard</h4>
                             <div>
-                                <img id="simulation_risk" style="max-width: 100%;" src="https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0101.GIF">
+                                <img id="simulation_hazard" style="max-width: 100%;" src="https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0101.GIF">
                             </div>
                             <div>
                                 <img style="max-width: 100%;" src="{{ STATIC_URL }}images/risk_legend.png">
@@ -154,7 +154,7 @@ body { overflow-x: hidden;}
                         <div class="col-md-4">
                             <h4 class="text-center">Risk</h4>
                             <div>
-                                <img style="max-width: 100%;" id="simulation_hazard" src="https://s3-eu-west-1.amazonaws.com/turkana/risk/0101.GIF">
+                                <img style="max-width: 100%;" id="simulation_risk" src="https://s3-eu-west-1.amazonaws.com/turkana/risk/0101.GIF">
                             </div>
                         </div>
 
@@ -364,148 +364,148 @@ function drawChart () {
         //console.log('VALUE: '+data.getValue(rowIndex, colIndex));
         switch(rowIndex) {
             case 0:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0101.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0101.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0101.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0101.GIF");
                 break;
             case 1:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0102.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0102.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0102.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0102.GIF");
                 break;
             case 2:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0103.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0103.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0103.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0103.GIF");
                 break;
             case 3:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0201.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0201.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0201.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0201.GIF");
                 break;
             case 4:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0202.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0202.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0202.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0202.GIF");
                 break;
             case 5:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0203.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0203.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0203.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0203.GIF");
                 break;
             case 6:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0301.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0301.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0301.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0301.GIF");
                 break;
             case 7:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0302.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0302.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0302.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0302.GIF");
                 break;
             case 8:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0303.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0303.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0303.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0303.GIF");
                 break;
             case 9:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0401.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0401.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0401.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0401.GIF");
                 break;
             case 10:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0402.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0402.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0402.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0402.GIF");
                 break;
             case 11:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0403.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0403.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0403.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0403.GIF");
                 break;
             case 12:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0501.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0501.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0501.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0501.GIF");
                 break;
             case 13:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0502.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0502.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0502.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0502.GIF");
                 break;
             case 14:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0503.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0503.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0503.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0503.GIF");
                 break;
             case 15:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0601.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0601.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0601.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0601.GIF");
                 break;
             case 16:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0602.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0602.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0602.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0602.GIF");
                 break;
             case 17:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0603.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0603.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0603.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0603.GIF");
                 break;
             case 18:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0701.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0701.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0701.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0701.GIF");
                 break;
             case 19:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0702.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0702.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0702.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0702.GIF");
                 break;
             case 20:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0703.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0703.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0703.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0703.GIF");
                 break;
             case 21:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0801.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0801.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0801.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0801.GIF");
                 break;
             case 22:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0802.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0802.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0802.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0802.GIF");
                 break;
             case 23:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0803.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0803.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0803.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0803.GIF");
                 break;
             case 24:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0901.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0901.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0901.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0901.GIF");
                 break;
             case 25:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0902.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0902.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0902.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0902.GIF");
                 break;
             case 26:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0903.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0903.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0903.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0903.GIF");
                 break;
             case 27:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1001.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1001.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1001.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1001.GIF");
                 break;
             case 28:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1002.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1002.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1002.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1002.GIF");
                 break;
             case 29:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1003.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1003.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1003.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1003.GIF");
                 break;
             case 30:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1101.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1101.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1101.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1101.GIF");
                 break;
             case 31:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1102.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1102.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1102.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1102.GIF");
                 break;
             case 32:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1103.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1103.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1103.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1103.GIF");
                 break;
             case 33:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1201.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1201.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1201.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1201.GIF");
                 break;
             case 34:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1202.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1202.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1202.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1202.GIF");
                 break;
             case 35:
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1203.GIF");
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1203.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1203.GIF");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1203.GIF");
                 break;
             }
 
