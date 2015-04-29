@@ -19,6 +19,8 @@ p{
 .pill-content > .active {
     height: auto;       /* let the content decide it  */
 } /* bootstrap hack end */
+
+body { overflow-x: hidden;}
 </style>
 {% endblock extra_head %}
 {% block case_studies_drop_down_menu %}
@@ -40,8 +42,8 @@ p{
 {% endblock hazard_title %}
 
 {% block main_content %}
-
-    <div class="row">
+<div class="container-fluid">
+    <div class="row-fluid">
         <div role="tabpanel">
             <ul class="nav nav-tabs" id="tablist">
                 <li role="presentation" class="active"><a href="#introduction" aria-controls="introduction" role="tab" data-toggle="tab"><b>Turkana: Introduction</b></a></li>
@@ -75,9 +77,9 @@ p{
                     <div class="row-fluid">
                         <div class="col-md-2">
                             <h4 class="text-center">Wards</h4>
-                            <ul id="series" style="list-style: none; overflow:hidden; overflow-y:scroll; height:200px;">
-                                <li><input type="checkbox" name="series" value="1" />Kang'atotha</li>
-                                <li><input type="checkbox" name="series" value="2" />Namadak/kapua</li>
+                            <ul id="wards" style="list-style: none; overflow:hidden; overflow-y:scroll; height:200px;">
+                                <li><input type="checkbox" name="series" value="1" checked="true" />Kang'atotha</li>
+                                <li><input type="checkbox" name="series" value="2" checked="true" />Namadak/kapua</li>
                                 <li><input type="checkbox" name="series" value="3" />Napetet</li>
                                 <li><input type="checkbox" name="series" value="4" />Napuu</li>
                                 <li><input type="checkbox" name="series" value="5" />Kaeris</li>
@@ -133,11 +135,14 @@ p{
                         </div>
                     </div>
                     <div class="row"><hr /></div>
-                    <div class="row">
+                    <div class="row-fluid">
                         <div class="col-md-4">
                             <h4 class="text-center">Hazard</h4>
                             <div>
-                                <img id="simulation_hazard" style="max-width: 100%;" src="https://s3-eu-west-1.amazonaws.com/upande/spi_0101.GIF">
+                                <img id="simulation_risk" style="max-width: 100%;" src="https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0101.GIF">
+                            </div>
+                            <div>
+                                <img style="max-width: 100%;" src="{{ STATIC_URL }}images/risk_legend.png">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -149,7 +154,7 @@ p{
                         <div class="col-md-4">
                             <h4 class="text-center">Risk</h4>
                             <div>
-                                <img style="max-width: 100%;" id="simulation_risk" src="https://s3-eu-west-1.amazonaws.com/upande/0101.GIF">
+                                <img style="max-width: 100%;" id="simulation_hazard" src="https://s3-eu-west-1.amazonaws.com/turkana/risk/0101.GIF">
                             </div>
                         </div>
 
@@ -231,9 +236,12 @@ p{
 <script>
     $(document).ready(function () {
         $('.dropdown-toggle').dropdown();
+
     });    
 </script>
 <script>
+
+
 google.load('visualization', '1', {packages: ['corechart', 'line']});
 google.setOnLoadCallback(drawChart);
 
@@ -346,192 +354,173 @@ function drawChart () {
 
     google.visualization.events.addListener(my_chart, 'select', function() {
         var selection = my_chart.getSelection();
-        var row = parseInt(selection[0].row);
-        var col = parseInt(selection[0].column);
-        console.log('ROW: '+row);
-        console.log('COL: '+col);
-        switch(row) {
+        var rowIndex = parseInt(selection[0].row);
+        var colIndex = parseInt(selection[0].column);
+        //console.log(data.getValue(1,0));
+        //console.log(data.getColumnLabel(colIndex));
+        //console.log('ROW: '+rowIndex);
+        //console.log('COL: '+colIndex);
+        //console.log('VALUE: '+data.getValue(rowIndex, colIndex));
+        switch(rowIndex) {
             case 0:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0101.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0101.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0101.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0101.GIF");
                 break;
             case 1:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0102.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0102.GIF");
-                $(".alert_message").val("Warning: Drought conditions developing in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0102.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0102.GIF");
                 break;
             case 2:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0103.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0103.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0103.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0103.GIF");
                 break;
             case 3:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0201.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0201.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0201.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0201.GIF");
                 break;
             case 4:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0202.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0202.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0202.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0202.GIF");
                 break;
             case 5:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0203.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0203.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0203.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0203.GIF");
                 break;
             case 6:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0301.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0301.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0301.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0301.GIF");
                 break;
             case 7:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0302.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0302.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0302.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0302.GIF");
                 break;
             case 8:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0303.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0303.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0303.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0303.GIF");
                 break;
             case 9:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0401.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0401.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0401.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0401.GIF");
                 break;
             case 10:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0402.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0402.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0402.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0402.GIF");
                 break;
             case 11:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0403.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0403.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0403.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0403.GIF");
                 break;
             case 12:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0501.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0501.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0501.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0501.GIF");
                 break;
             case 13:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0502.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0502.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0502.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0502.GIF");
                 break;
             case 14:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0503.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0503.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0503.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0503.GIF");
                 break;
             case 15:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0601.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0601.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0601.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0601.GIF");
                 break;
             case 16:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0602.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0602.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0602.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0602.GIF");
                 break;
             case 17:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0603.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0603.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0603.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0603.GIF");
                 break;
             case 18:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0701.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0701.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0701.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0701.GIF");
                 break;
             case 19:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0702.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0702.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0702.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0702.GIF");
                 break;
             case 20:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0703.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0703.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0703.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0703.GIF");
                 break;
             case 21:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0801.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0801.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0801.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0801.GIF");
                 break;
             case 22:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0802.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0802.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0802.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0802.GIF");
                 break;
             case 23:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0803.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0803.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0803.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0803.GIF");
                 break;
             case 24:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0901.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0901.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0901.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0901.GIF");
                 break;
             case 25:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0902.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0902.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0902.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0902.GIF");
                 break;
             case 26:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0903.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0903.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/0903.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0903.GIF");
                 break;
             case 27:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1001.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1001.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1001.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1001.GIF");
                 break;
             case 28:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1002.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1002.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1002.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1002.GIF");
                 break;
             case 29:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1003.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1003.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1003.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1003.GIF");
                 break;
             case 30:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1101.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1101.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1101.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1101.GIF");
                 break;
             case 31:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1102.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1102.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1102.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1102.GIF");
                 break;
             case 32:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1103.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1103.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1103.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1103.GIF");
                 break;
             case 33:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1201.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1201.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1201.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1201.GIF");
                 break;
             case 34:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1202.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1202.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1202.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1202.GIF");
                 break;
             case 35:
-                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1203.GIF");
-                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1203.GIF");
-                $(".alert_message").val("Moderate drought possible in Kang'otha.");
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/risk/1203.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_1203.GIF");
                 break;
             }
+
+        var columnHeader = data.getColumnLabel(colIndex);
+        var reading = data.getValue(rowIndex, colIndex);
+        switch (reading) {
+            case 1:
+                $(".alert_message").val("Warning: Drought conditions developing in " + columnHeader);
+                break;
+            case 2:
+                $(".alert_message").val("Moderate drought possible in " + columnHeader);
+                break;
+            case 3:
+                $(".alert_message").val("Severe drought likely in " + columnHeader);
+                break;
+        }
     });
 
     $('#series').find(':checkbox').change(function () {
