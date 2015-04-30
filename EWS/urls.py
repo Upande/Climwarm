@@ -5,8 +5,8 @@ from .views import *
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', DefaultView.as_view(), name='default'),
-    url(r'^home', Home.as_view(), name='home'),
+    #url(r'^$', DefaultView.as_view(), name='default'),
+    url(r'^$', Home.as_view(), name='home'),
     url(r'^drought', DroughtView.as_view(), name='drought_home'),
     url(r'^flood', FloodView.as_view(), name='flood_home'),
     url(r'^nzoia', Nzoia.as_view(), name='nzoia'),
