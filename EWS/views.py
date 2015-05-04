@@ -30,7 +30,7 @@ class Nzoia(HazardAlertMixin, TemplateView):
         return context
 
 
-class Kwale(TemplateView):
+class Kwale(HazardAlertMixin, TemplateView):
     template_name = 'kwale.html'
 
 class Turkana(HazardAlertMixin, TemplateView):

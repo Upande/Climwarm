@@ -4,6 +4,10 @@
 {% block extra_head %}
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
+
 <style type="text/css">
 a.fancybox img {
         border: none;
@@ -50,9 +54,567 @@ p{
 {% endblock hazard_title %}
 
 {% block main_content %}
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div role="tabpanel">
+
+            <ul class="nav nav-tabs" id="tablist">
+                <li role="presentation" class="active"><a href="#introduction" aria-controls="introduction" role="tab" data-toggle="tab"><b>Kwale: Introduction</b></a></li>
+                <li role="presentation"><a href="#simulation" aria-controls="simulation" role="tab" data-toggle="tab"><b>Simulation</b></a></li>
+                <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><b>Data</b></a></li>
+            </ul>
+            
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="introduction">
+                    <div class="col-xs-10 col-md-offset-1">
+                        </br>
+                        <b>Biophysical Indicators</b>
+                        <p class="text-left"> > Most bio-physical showed some fluctuations outside expected
+                                seasonal norms.</p>
+                        <p class="text-left"> > The vegetation condition index VCI-3month was 29.06
+                                compared to the normal of 40-50.</p>
+                        <p class="text-left"> > The state of water sources was below normal at 4 compared to 5
+                                normally.</p>
+                        <b> Production indicators</b>
+                        <p class="text-left">> The milk production levels were above-average at 132 750-ml
+                                bottles compared to a long-term average of 80-85.</p>
+                        <b>Socio-Economic Indicators (Impact Indicators)</b>
+                        <p class="text-left">> There were no unusual migrations in search of pasture and
+                                water.</p>
+                        <p class="text-left">> The livestock body condition is rated at 5 compared to 4-5
+                                normally.</p>
+                        <b>Access indicators</b>
+                        <p class="text-left">> The milk consumption was above-average since it was recorded
+                                at 60.5 750-ml bottles compared to a normal of 40 bottles.</p>
+                        <b>Utilization indicators</b>
+                        <p class="text-left">> The percentage of children at risk of malnutrition based on the
+                                mid-upper arm circumference was recorded at 5.2% which was
+                                below the normal of 5.8%.</p>
+                        <p class="text-left">Drought risks are medium as most indicators show some fluctuations
+                                outside the normal ranges. This is particularly evident in the livestock
+                                farming livelihood zone which has continued to post a deteriorating
+                                trend. The county is therefore placed in the first stages of early alert
+                                although with a stable trend since the season has begun that is likely
+                                to reverse the negative trends evident in most bio-physical indicators.</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-2" align="right">
+                            <img src="{{ STATIC_URL }}images/Kwale.gif" class="thumbnail" align="center">
+                        </div>
+                        <div class="col-md-4">
+                                <!--a href="#">SPI Metadata</a>
+                                <br/>
+                                <a href="#">Messages & Triggers</a>
+                                <br/>
+                                <a href="#">Vulnerablity Metadata</a>
+                                <br/-->
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="simulation">
+
+                    <div class="row-fluid">
+                        <div class="col-md-2">
+                            <h4 class="text-center">Wards</h4>
+                            <ul id="series" style="list-style: none; overflow:hidden; overflow-y:scroll; height:200px;">
+                                <li><input type="checkbox" name="series" value="1" header="Mackinnon Road / Taru" checked="true" autocomplete="off" />Mackinnon Road / Taru</li>
+                                <li><input type="checkbox" name="series" value="2" header="Mwatate" checked="true" autocomplete="off" />Mwatate</li>
+                                <li><input type="checkbox" name="series" value="3" header="Chengoni" autocomplete="off" />Chengoni</li>
+                                <li><input type="checkbox" name="series" value="4" header="Gandini" autocomplete="off" />Gandini</li>
+                                <li><input type="checkbox" name="series" value="5" header="Kasemani" autocomplete="off" />Kasemani</li>
+                                <li><input type="checkbox" name="series" value="6" header="Mtaa" autocomplete="off" />Mtaa</li>
+                                <li><input type="checkbox" name="series" value="7" header="Mwavumbo" autocomplete="off" />Mwavumbo</li>
+                                <li><input type="checkbox" name="series" value="8" header="Ndavaya" autocomplete="off" />Ndavaya</li>
+                                <li><input type="checkbox" name="series" value="9" header="Kasemeni" autocomplete="off" />Kasemeni</li> 
+                                <li><input type="checkbox" name="series" value="10" header="Kinango" autocomplete="off" />Kinango</li> 
+                                <li><input type="checkbox" name="series" value="11" header="Puma" autocomplete="off" />Puma</li>
+                                <li><input type="checkbox" name="series" value="12" header="Samburu" autocomplete="off" />Samburu</li>
+                                <li><input type="checkbox" name="series" value="13" header="Samburu / Makamini" autocomplete="off" />Samburu / Makamini</li>
+                                <li><input type="checkbox" name="series" value="14" header="Taru" autocomplete="off" />Taru</li>
+                                <li><input type="checkbox" name="series" value="15" header="Vigurungani" autocomplete="off" />Vigurungani</li>
+                                <li><input type="checkbox" name="series" value="16" header="Kubo South" autocomplete="off" />Kubo South</li>
+                                <li><input type="checkbox" name="series" value="17" header="Kwale" autocomplete="off" />Kwale</li>
+                                <li><input type="checkbox" name="series" value="18" header="Mangawani" autocomplete="off" />Mangawani</li>
+                                <li><input type="checkbox" name="series" value="19" header="Mazumalume" autocomplete="off" />Mazumalume</li>
+                                <li><input type="checkbox" name="series" value="20" header="Mbuguni /ng'ombeni" autocomplete="off" />Mbuguni /ng'ombeni</li>
+                                <li><input type="checkbox" name="series" value="21" header="Mkongani" autocomplete="off" />Mkongani</li>
+                                <li><input type="checkbox" name="series" value="22" header="Mwaluphamba" autocomplete="off" />Mwaluphamba</li>
+                                <li><input type="checkbox" name="series" value="23" header="Tiwi" autocomplete="off" />Tiwi</li>
+                                <li><input type="checkbox" name="series" value="24" header="Msabweni" autocomplete="off" />Msabweni</li>
+                                <li><input type="checkbox" name="series" value="25" header="Mwena" autocomplete="off" />Mwena</li>
+                                <li><input type="checkbox" name="series" value="26" header="Vuga" autocomplete="off" />Vuga</li>
+                                <li><input type="checkbox" name="series" value="27" header="Waa" autocomplete="off" />Waa</li>
+                                <li><input type="checkbox" name="series" value="28" header="Dzombo" autocomplete="off" />Dzombo</li>
+                                <li><input type="checkbox" name="series" value="29" header="Gombato/bongwe" autocomplete="off" />Gombato/bongwe</li>
+                                <li><input type="checkbox" name="series" value="30" header="Kasemeni / Sega" autocomplete="off" />Kasemeni / Sega</li>
+                                <li><input type="checkbox" name="series" value="31" header="Kikoneni" autocomplete="off" />Kikoneni</li>
+                                <li><input type="checkbox" name="series" value="32" header="Kilimangodo" autocomplete="off" />Kilimangodo</li>
+                                <li><input type="checkbox" name="series" value="33" header="Kingwende/ Shirazi" autocomplete="off" />Kingwende/ Shirazi</li>
+                                <li><input type="checkbox" name="series" value="34" header="Kinondo" autocomplete="off" />Kinondo</li>
+                                <li><input type="checkbox" name="series" value="35" header="Mivumoni" autocomplete="off" />Mivumoni</li>
+                                <li><input type="checkbox" name="series" value="36" header="Pongwe / Kidimu" autocomplete="off" />Pongwe / Kidimu</li>
+                                <li><input type="checkbox" name="series" value="37" header="Ukunda" autocomplete="off" />Ukunda</li>
+                                <li><input type="checkbox" name="series" value="38" header="Vanga" autocomplete="off" />Vanga</li>
+                            </ul>                            
+                        </div>
+                        <div class="col-md-9">
+                            <div id="content">
+                                <div id="chart_div" style="height: 200px"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div>&nbsp;</div>
+                            <button class="btn btn-md btn-block btn-default" data-toggle="modal" data-target="#alertSMS">
+                                Send SMS
+                            </button>
+                            <div>&nbsp;</div>
+                            <button class="btn btn-md btn-block btn-default" data-toggle="modal" data-target="#alertEmail">
+                                Send Email
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row"><hr /></div>
+                    <div class="row-fluid">
+                        <div class="col-md-4">
+                            <h4 class="text-center">Hazard</h4>
+                            <div>
+                                <img id="simulation_hazard" style="max-width: 100%;"  src="https://s3-eu-west-1.amazonaws.com/turkana/hazard/spi_0101.GIF">
+                            </div>
+                            <div>
+                                <img style="max-width: 100%;" class="fancybox" src="{{ STATIC_URL }}images/risk_legend.png">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="text-center">Vulnerability</h4>
+                            <div>
+                                <img id="simulation_vulnerability" style="max-width: 100%;" src="https://s3-eu-west-1.amazonaws.com/kwale/Kwale_Vulnerability.GIF">
+                            </div>
+                            <div>
+                                <img style="max-width: 100%;" class="fancybox" src="{{ STATIC_URL }}images/turkana_vulnerability.jpg">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="text-center">Risk</h4>
+                            <div>
+                                <img style="max-width: 100%;" id="simulation_risk" src="https://s3-eu-west-1.amazonaws.com/turkana/risk/0101.GIF">
+                            </div>
+                            <div>
+                                <img style="max-width: 100%;" class="fancybox" src="{{ STATIC_URL }}images/turkana_risk.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="data">
+                    <div class="col-xs-12">
+                    </div>
+                </div>
+              
+            </div>          
+        </div>
+    </div>
+ </div>
+
+ <div class="modal" id="alertSMS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">SMS Alert Message</h4>
+            </div>
+            <form method="POST" id="send_sms_form">{% csrf_token %}
+            <div class="modal-body">
+                <input type="hidden" name="alert_type" value="SMS" />
+                <input type="hidden" name="return_url" value="turkana" />
+                <div class="form-group">
+                    <label for="sms_alert_message" class="control-label">Message:</label>
+                    <textarea class="alert_message form-control" name="sms_alert_message" readonly="true"></textarea>
+                </div>
+                <legend>Enter recipient mobile numbers separated by commans<legend>
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" name="recipients">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--<a href="#" id="submit_sms" class="btn btn-primary">Send message</a>-->
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="alertEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Email Alert message</h4>
+            </div>
+            <form method="POST" id="send_email_form">{% csrf_token %}
+            <div class="modal-body">
+                <input type="hidden" name="alert_type" value="EMAIL" />
+                <input type="hidden" name="return_url" value="turkana" />
+                <div class="form-group">
+                    <label for="email_alert_message" class="control-label">Message:</label>
+                    <textarea class="alert_message form-control" name="email_alert_message" readonly="true"></textarea>
+                </div>
+                <legend>Enter recipient email addresses separated by commans<legend>
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" name="recipients">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--<a href="#" id="submit_email" class="btn btn-primary">Send message</a> -->
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+        
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown();
+        });
+</script>
+<script>
+
+google.load('visualization', '1', {packages: ['corechart', 'line']});
+google.setOnLoadCallback(drawChart);
+
+var columnHeaderLabels = {};
+columnHeaderLabels[1] = "Mackinnon Road / Taru";
+columnHeaderLabels[2] = "Mwatate";
+
+function drawChart () {
+
+    var data = google.visualization.arrayToDataTable([
+        ['Date',
+        'Mackinnon Road / Taru',
+        'Mwatate',
+        'Chengoni',
+        'Gandini',
+        'Kasemani',
+        'Mtaa',
+        'Mwavumbo',
+        'Ndavaya',
+        'Kasemeni',
+        'Kinango',
+        'Puma',
+        'Samburu',
+        'Samburu / Makamini',
+        'Taru',
+        'Vigurungani',
+        'Kubo South',
+        'Kwale',
+        'Mangawani',
+        'Mazumalume',
+        "Mbuguni /ng'ombeni",
+        'Mkongani',
+        'Mwaluphamba (part)',
+        'Tiwi',
+        'Msabweni',
+        'Mwena',
+        'Vuga',
+        'Waa',
+        'Dzombo',
+        'Gombato/bongwe',
+        'Kasemeni / Sega',
+        'Kikoneni',
+        'Kilimangodo',
+        'Kingwende/ Shirazi',
+        'Kinondo',
+        'Mivumoni',
+        'Pongwe / Kidimu',
+        'Ukunda',
+        'Vanga'],
+['2009-01-01',2,1,1,1,1,1,1,2,1,1,1,1,2,1,2,1,1,2,1,1,2,1,1,1,2,1,1,2,1,2,1,2,1,1,1,2,1,2],
+['2009-01-20',2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,1,2,2,1,2,2,2,1,2,1,2,2,2,1,2],
+['2009-01-30',2,1,1,1,1,1,1,2,1,1,1,1,2,1,2,1,1,2,1,1,2,1,1,1,2,1,1,2,1,2,1,2,1,1,1,2,1,2],
+['2009-02-01',1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,3,1,1,1,3,1],
+['2009-02-20',1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,3,1,1,1,3,1],
+['2009-02-30',1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,3,1,1,1,3,1],
+['2009-03-01',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+['2009-03-20',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+['2009-03-30',2,1,2,2,1,1,1,1,1,1,1,1,1,2,1,1,2,1,1,2,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1],
+['2009-04-01',1,2,1,2,2,2,2,1,2,2,1,1,1,1,1,1,2,2,1,2,2,2,2,1,2,2,2,2,2,2,2,1,1,2,2,2,1,2],
+['2009-04-20',1,2,2,2,2,2,2,1,2,2,2,2,2,2,1,1,2,2,2,3,2,2,2,1,1,3,2,1,2,1,1,1,1,2,1,1,1,1],
+['2009-04-30',1,1,1,2,2,1,1,1,2,1,1,1,1,1,1,1,2,1,1,2,1,1,2,1,1,2,2,1,2,1,2,1,1,2,2,1,1,1],
+['2009-05-01',2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,1,2,2,2,2,1,2,2,2,2,2,2,2,2,1,2,2,2,1,2],
+['2009-05-20',2,2,2,2,1,2,2,2,1,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+['2009-05-30',2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,3,2,2,2,1,2,3,2,2,2,2,2,2,1,2,2,2,1,2],
+['2009-06-01',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+['2009-06-20',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+['2009-06-30',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+['2009-07-01',1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1,1,1,3,1,1,1,3,1],
+['2009-07-20',2,2,2,2,3,2,2,1,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,3,1,2,3,2,2,1,1,1,3,2,2,2,3,1],
+['2009-07-30',2,2,2,2,3,2,2,1,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,3,2,2,3,2,2,1,1,1,3,2,2,2,3,2],
+['2009-08-01',1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,1,2,3,1,2,3,1,2,1,1,1,3,2,2,1,3,1],
+['2009-08-20',1,2,2,2,3,2,2,1,2,2,2,2,2,2,2,1,2,2,1,2,2,1,2,3,1,2,3,1,2,1,1,1,3,2,2,1,3,1],
+['2009-08-30',1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,3,1,1,3,1,1,1,1,1,3,1,1,1,3,1],
+['2009-09-01',2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,1,2,2,2,3,2,2,2,1,2,3,1,2,2,2,1,2,1,2,2,2,1,2],
+['2009-09-20',2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,1,2,2,2,3,2,2,2,1,2,3,1,2,2,2,1,2,1,2,2,2,1,2],
+['2009-09-30',2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,1,2,2,2,3,2,2,2,1,2,3,1,2,2,2,1,2,1,2,2,2,1,2],
+['2009-10-01',1,2,1,2,2,1,1,1,3,2,1,1,1,1,1,1,2,1,1,2,1,1,2,1,2,2,2,1,1,1,1,1,1,1,1,1,1,1],
+['2009-10-20',1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+['2009-10-30',1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+['2009-09-01',2,2,2,2,2,2,2,2,3,2,2,2,2,2,2,1,3,2,2,3,2,2,3,1,2,2,3,2,1,2,1,2,1,2,2,2,2,2],
+['2009-09-20',2,2,2,2,2,2,2,2,3,2,2,2,2,2,2,1,3,2,2,3,2,2,3,1,2,2,3,2,1,2,1,2,1,2,2,2,2,2],
+['2009-09-30',2,2,2,2,2,2,2,2,3,2,2,2,2,2,2,1,3,2,2,3,2,2,2,1,2,2,3,2,1,2,1,2,1,1,2,1,1,2],
+['2009-12-01',1,1,1,2,2,1,1,1,3,1,1,1,1,1,1,1,2,1,1,2,1,1,2,1,2,2,2,1,1,2,1,1,1,1,1,1,1,2],
+['2009-12-20',1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+['2009-12-30',1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    ]);
+    var options = {
+        title: 'Click on reading to generate alerts',
+        hAxis: {
+            title: 'Date'
+        },
+        vAxis: {
+            title: 'Drought level',
+            viewWindow: {
+                max: 3.0,
+                min: 1.0
+            }
+        },
+        backgroundColor: '#FFFFFF',
+        pointSize: 5
+    };
+    var view = new google.visualization.DataView(data);
+
+
+    //var my_chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    //my_chart.draw(data, options);
+    var my_chart = new google.visualization.LineChart($('#chart_div')[0]);
+    view.setColumns([0,1,2]);
+    my_chart.draw(view, {
+       strictFirstColumnType: true,
+       vAxis: {
+            title: 'Drought level',
+            viewWindow: {
+                max: 3.0,
+                min: 1.0
+            }
+        },
+        hAxis: {
+            title: 'Date'
+        }
+    });
+
+    google.visualization.events.addListener(my_chart, 'select', function(e) {
+        var selection = my_chart.getSelection();
+        var rowIndex = parseInt(selection[0].row);
+        var colIndex = parseInt(selection[0].column);
+        console.log(selection[0]);
+        var my_col = 1;
+        //console.log(typeof colIndex);
+        //console.log(typeof my_col);
+        
+        //console.log(data.getValue(1,0));
+        //console.log(data.getColumnLabel(colIndex));
+        //console.log('ROW: '+rowIndex);
+        //console.log('COL: '+colIndex);
+        //console.log('VALUE: '+data.getValue(rowIndex, colIndex));
+        var keys = [];
+        for (var key in columnHeaderLabels) {
+            if (columnHeaderLabels.hasOwnProperty(key)) {
+                keys.push(key);
+            }
+        }
+        console.log(keys);
+
+        switch(rowIndex) {
+            case 0:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0101.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0101.GIF");
+                break;
+            case 1:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0102.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0102.GIF");
+                break;
+            case 2:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0103.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0103.GIF");
+                break;
+            case 3:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0201.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0201.GIF");
+                break;
+            case 4:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0202.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0202.GIF");
+                break;
+            case 5:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0203.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0203.GIF");
+                break;
+            case 6:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0301.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0301.GIF");
+                break;
+            case 7:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0302.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0302.GIF");
+                break;
+            case 8:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0303.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0303.GIF");
+                break;
+            case 9:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0401.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0401.GIF");
+                break;
+            case 10:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0402.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0402.GIF");
+                break;
+            case 11:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0403.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0403.GIF");
+                break;
+            case 12:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0501.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0501.GIF");
+                break;
+            case 13:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0502.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0502.GIF");
+                break;
+            case 14:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0503.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0503.GIF");
+                break;
+            case 15:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0601.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0601.GIF");
+                break;
+            case 16:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0602.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0602.GIF");
+                break;
+            case 17:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0603.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0603.GIF");
+                break;
+            case 18:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0701.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0701.GIF");
+                break;
+            case 19:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0702.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0702.GIF");
+                break;
+            case 20:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0703.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0703.GIF");
+                break;
+            case 21:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0801.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0801.GIF");
+                break;
+            case 22:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0802.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0802.GIF");
+                break;
+            case 23:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0803.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0803.GIF");
+                break;
+            case 24:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0901.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0901.GIF");
+                break;
+            case 25:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0902.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0902.GIF");
+                break;
+            case 26:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/0903.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_0903.GIF");
+                break;
+            case 27:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/1001.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_1001.GIF");
+                break;
+            case 28:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/1002.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_1002.GIF");
+                break;
+            case 29:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/1003.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_1003.GIF");
+                break;
+            case 30:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/1101.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_1101.GIF");
+                break;
+            case 31:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/1102.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_1102.GIF");
+                break;
+            case 32:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/1103.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_1103.GIF");
+                break;
+            case 33:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/1201.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_1201.GIF");
+                break;
+            case 34:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/1202.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_1202.GIF");
+                break;
+            case 35:
+                $('#simulation_risk').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/risk/1203.GIF");
+                $('#simulation_hazard').attr("src", "https://s3-eu-west-1.amazonaws.com/kwale/hazard/spi_1203.GIF");
+                break;
+            }
+
+        console.log('HAZARD: '+ $('#simulation_risk').attr("src"));
+        console.log('HAZARD: '+ $('#simulation_hazard').attr("src"));
+        var columnHeader = data.getColumnLabel(colIndex);
+        var reading = data.getValue(rowIndex, colIndex);
+        
+        switch (reading) {
+            case 1:
+                var index_key = String(colIndex);
+                $(".alert_message").val("Warning: Drought conditions developing in " + columnHeaderLabels[index_key]);
+                break;
+            case 2:
+                var index_key = String(colIndex);
+                $(".alert_message").val("Moderate drought possible in " + columnHeaderLabels[index_key]);
+                break;
+            case 3:
+                var index_key = String(colIndex);
+                $(".alert_message").val("Severe drought likely in " + columnHeaderLabels[index_key]);
+                break;
+        }
+    });
+
+    $('#series').find(':checkbox').change(function () {
+        console.log('adding cols');
+        columnHeaderLabels = {};
+        var cols = [0];
+        var i = 1;
+        $('#series').find(':checkbox:checked').each(function () {
+            columnHeaderLabels[i] = $(this).attr('header');
+            cols.push(parseInt($(this).attr('value')));
+            i++;
+        });
+        view.setColumns(cols);
+        my_chart.draw(view, options);
+    });
+
+}
+</script>
+
+
 <script type="text/javascript">
     $(function($){
         var addToAll = false;
@@ -72,83 +634,6 @@ p{
         });
     });
     $.noConflict();
-</script>
-
-    <div class="row">
-        <div role="tabpanel">
-            <ul class="nav nav-tabs" id="tablist">
-                <li role="presentation" class="active"><a href="#introduction" aria-controls="introduction" role="tab" data-toggle="tab"><b>Kwale: Introduction</b></a></li>
-                <li role="presentation"><a href="#simulation" aria-controls="simulation" role="tab" data-toggle="tab"><b>Simulation</b></a></li>
-                <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><b>Data</b></a></li>
-            </ul>
-            
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="introduction">
-                        <div class="col-xs-10 col-md-offset-1">
-                        </br>
-                            <b>Biophysical Indicators</b>
-                               <p class="text-left"> > Most bio-physical showed some fluctuations outside expected
-                                seasonal norms.</p>
-                               <p class="text-left"> > The vegetation condition index VCI-3month was 29.06
-                                compared to the normal of 40-50.</p>
-                               <p class="text-left"> > The state of water sources was below normal at 4 compared to 5
-                                normally.</p>
-                               <b> Production indicators</b>
-                                <p class="text-left">> The milk production levels were above-average at 132 750-ml
-                                bottles compared to a long-term average of 80-85.</p>
-                                <b>Socio-Economic Indicators (Impact Indicators)</b>
-                                <p class="text-left">> There were no unusual migrations in search of pasture and
-                                water.</p>
-                                <p class="text-left">> The livestock body condition is rated at 5 compared to 4-5
-                                normally.</p>
-                                <b>Access indicators</b>
-                                <p class="text-left">> The milk consumption was above-average since it was recorded
-                                at 60.5 750-ml bottles compared to a normal of 40 bottles.</p>
-                                <b>Utilization indicators</b>
-                                <p class="text-left">> The percentage of children at risk of malnutrition based on the
-                                mid-upper arm circumference was recorded at 5.2% which was
-                                below the normal of 5.8%.</p>
-                                <p class="text-left">Drought risks are medium as most indicators show some fluctuations
-                                outside the normal ranges. This is particularly evident in the livestock
-                                farming livelihood zone which has continued to post a deteriorating
-                                trend. The county is therefore placed in the first stages of early alert
-                                although with a stable trend since the season has begun that is likely
-                                to reverse the negative trends evident in most bio-physical indicators.</p>
-                        <div class="row">
-                                <div class="col-md-6 col-md-offset-2" align="right">
-                                    <img src="{{ STATIC_URL }}images/Kwale.gif" class="thumbnail" align="center">
-                                </div>
-                            <div class="col-md-4">
-                                <!--a href="#">SPI Metadata</a>
-                                <br/>
-                                <a href="#">Messages & Triggers</a>
-                                <br/>
-                                <a href="#">Vulnerablity Metadata</a>
-                                <br/-->
-                            </div>
-                        </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="simulation">
-                    <div class="col-xs-10">
-                            
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="data">
-                        <div class="col-xs-12">
-                        </div>
-                </div>
-              
-            </div>          
-        </div>
-    </div>
- </div>
-<script src="{{ STATIC_URL }}js/jquery-1.11.2.min.js" type="text/javascript"></script>
-<script src="{{ STATIC_URL }}js/bootstrap.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-        
-        $(document).ready(function () {
-            $('.dropdown-toggle').dropdown();
-        });
 </script>
 
 {% endblock main_content %}
