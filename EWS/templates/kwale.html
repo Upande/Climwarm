@@ -71,7 +71,7 @@ p{
                         <p>
                             Kwale is mainly an inland county, but it has coastline south of Mombasa. Diani Beach is part of the Msambweni division. Shimba Hills National Reserve and Mwaluganje elephant sanctuary are other attractions in the county.</p>
                         <p>
-                            This region suffers from poor rainfall this means water sources are very few and have to be guarded fiercely. Food is scarce as there is no enough water to support farming activities to generate food. This leads to poverty cases increasing, health complications due to malnutrition. </p>
+                            This county suffers from poor rainfall this means water sources are very few and have to be guarded fiercely. Food is scarce as there is no enough water to support farming activities to generate food. This leads to poverty cases increasing, health complications due to malnutrition. </p>
                     <!---
                         </br>
                         <b>Biophysical Indicators</b>
@@ -109,12 +109,12 @@ p{
                             <img src="{{ STATIC_URL }}images/kwale_location_map.png" class="thumbnail" align="center" height='50%' width='50%'>
                         </div>
                         <div class="col-md-4">
-                                <!--a href="#">SPI Metadata</a>
+                                <a href="{{ STATIC_URL }}pdfs/Metadata_SPI.pdf">SPI Metadata</a>
                                 <br/>
-                                <a href="#">Messages & Triggers</a>
+                                <a href="{{ STATIC_URL }}pdfs/message__triggers_12042015-Denisv1.pdf">Messages & Triggers</a>
                                 <br/>
-                                <a href="#">Vulnerablity Metadata</a>
-                                <br/-->
+                                <a href="{{ STATIC_URL }}pdfs/Metadata_Vulnerability.pdf">Vulnerablity Metadata</a>
+                                <br/>
                         </div>
                     </div>
                 </div>
@@ -203,10 +203,10 @@ p{
                         <div class="col-md-4">
                             <h4 class="text-center">Risk</h4>
                             <div>
-                                <img style="max-width: 100%;" id="simulation_risk" src="https://s3-eu-west-1.amazonaws.com/kwale/risk/0101.GIF">
+                                <img style="max-width: 100%; " id="simulation_risk" src="https://s3-eu-west-1.amazonaws.com/kwale/risk/0101.GIF">
                             </div>
                             <div>
-                                <img style="max-width: 100%;" class="fancybox" src="{{ STATIC_URL }}images/turkana_risk.jpg">
+                                <img style="max-width: 100%; " class="fancybox" src="{{ STATIC_URL }}images/turkana_risk.jpg">
                             </div>
                         </div>
                     </div>
@@ -385,7 +385,7 @@ function drawChart () {
             title: 'Date'
         },
         vAxis: {
-            title: 'Drought level',
+            title: 'Drought Risk',
             viewWindow: {
                 max: 3.0,
                 min: 1.0
@@ -404,7 +404,7 @@ function drawChart () {
     my_chart.draw(view, {
        strictFirstColumnType: true,
        vAxis: {
-            title: 'Drought level',
+            title: 'Drought Risk',
             viewWindow: {
                 max: 3.0,
                 min: 1.0

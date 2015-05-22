@@ -96,11 +96,11 @@ body { overflow-x: hidden;}
                                 <img src="{{ STATIC_URL }}images/Turkana_location_map.png" class="thumbnail" align="center">
                             </div>
                             <div class="col-md-2">
-                                <a href="http://maps.virtualkenya.org/documents/969">SPI Metadata</a>
+                                <a href="{{ STATIC_URL }}pdfs/Metadata_SPI.pdf">SPI Metadata</a>
                                 <br/>
-                                <a href="http://maps.virtualkenya.org/documents/970">Messages & Triggers</a>
+                                <a href="{{ STATIC_URL }}pdfs/message__triggers_12042015-Denisv1.pdf">Messages & Triggers</a>
                                 <br/>
-                                <a href="http://maps.virtualkenya.org/documents/971">Vulnerablity Metadata</a>
+                                <a href="{{ STATIC_URL }}pdfs/Metadata_Vulnerability.pdf">Vulnerablity Metadata</a>
                                 <br/>
                             </div>
                         </div>
@@ -390,7 +390,8 @@ function drawChart () {
     var my_chart = new google.visualization.LineChart($('#chart_div')[0]);
     view.setColumns([0,1,2]);
     my_chart.draw(view, {
-       strictFirstColumnType: true
+       strictFirstColumnType: true,
+       
     });
 
     google.visualization.events.addListener(my_chart, 'select', function(e) {
