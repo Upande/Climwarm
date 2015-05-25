@@ -391,6 +391,7 @@ function drawChart () {
                 min: 1.0
             }
         },
+        tooltip: { trigger: 'selection' },
         backgroundColor: '#FFFFFF',
         pointSize: 5
     };
@@ -403,6 +404,7 @@ function drawChart () {
     view.setColumns([0,1,2]);
     my_chart.draw(view, {
        strictFirstColumnType: true,
+       tooltip: { trigger: 'selection' },
        vAxis: {
             title: 'Drought Risk',
             viewWindow: {

@@ -368,6 +368,7 @@ function drawChart () {
 ['2011-12-30',2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 1, 2, 2, 2, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 1],
     ]);
     var options = {
+        tooltip: { trigger: 'selection' },
         title: 'Click on reading to generate alerts',
         hAxis: {
             title: 'Date'
@@ -390,8 +391,8 @@ function drawChart () {
     var my_chart = new google.visualization.LineChart($('#chart_div')[0]);
     view.setColumns([0,1,2]);
     my_chart.draw(view, {
-       strictFirstColumnType: true,
-       
+        tooltip: { trigger: 'selection' },
+        strictFirstColumnType: true,
     });
 
     google.visualization.events.addListener(my_chart, 'select', function(e) {
